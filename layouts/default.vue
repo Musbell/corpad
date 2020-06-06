@@ -66,8 +66,8 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Profile',
-          to: '/profile'
+          title: 'Adashi',
+          to: '/adashiCategory'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -78,6 +78,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Loan',
           to: '/loan'
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Profile',
+          to: '/profile'
         },
         {
           icon: 'mdi-account-key',

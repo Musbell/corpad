@@ -30,7 +30,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/vue-luck-draw', mode: 'client' }],
+  plugins: [
+    { src: '~/plugins/vue-luck-draw', mode: 'client' },
+    { src: '~/plugins/PageTitle' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
