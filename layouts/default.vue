@@ -1,13 +1,13 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      color="#FF9800"
-      dark
       fixed
       app
+      class="secondary"
+      dark
     >
       <v-list>
         <v-list-item
@@ -26,17 +26,12 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app flat>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="gray" />
-      <!--      <v-btn @click.stop="miniVariant = !miniVariant" icon>-->
-      <!--        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>-->
-      <!--      </v-btn>-->
-      <!--      <v-btn @click.stop="clipped = !clipped" icon>-->
-      <!--        <v-icon>mdi-application</v-icon>-->
-      <!--      </v-btn>-->
-      <!--      <v-btn @click.stop="fixed = !fixed" icon>-->
-      <!--        <v-icon>mdi-minus</v-icon>-->
-      <!--      </v-btn>-->
+    <v-app-bar :clipped-left="clipped" fixed app dark class="secondary">
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+      <v-btn @click.stop="miniVariant = !miniVariant" icon>
+        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
+      </v-btn>
+
       <v-toolbar-title>
         <v-img
           src="https://res.cloudinary.com/musbell/image/upload/v1580986143/CORPAP3_btmvyg.png"
@@ -44,30 +39,15 @@
         />
       </v-toolbar-title>
       <v-spacer />
-      <v-btn @click.stop="rightDrawer = !rightDrawer" icon>
-        <v-icon color="grey">mdi-power-off</v-icon>
-      </v-btn>
     </v-app-bar>
     <v-content>
       <v-container>
         <nuxt />
       </v-container>
     </v-content>
-    <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
-      <v-list>
-        <v-list-item @click.native="right = !right">
-          <v-list-item-action>
-            <v-icon light color="white">
-              mdi-repeat
-            </v-icon>
-          </v-list-item-action>
-          <v-list-item-title>Switch drawer (click me)</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-    <!--    <v-footer :fixed="fixed" app>-->
-    <!--      <span>&copy; 2019</span>-->
-    <!--    </v-footer>-->
+    <v-footer :fixed="fixed" app class="secondary" dark>
+      <span>&copy; Corpad&trade; 2020 </span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -76,7 +56,7 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: true,
+      drawer: false,
       fixed: false,
       items: [
         {
@@ -98,6 +78,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Loan',
           to: '/loan'
+        },
+        {
+          icon: 'mdi-account-key',
+          title: 'Login',
+          to: '/signin'
         }
       ],
       miniVariant: false,
