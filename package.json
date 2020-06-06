@@ -2,7 +2,7 @@
   "name": "corpad",
   "version": "1.0.0",
   "description": "Coperate Adashi",
-  "author": "Musbell",
+  "author": "Musbell & Marshall",
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -21,10 +21,12 @@
     }
   },
   "dependencies": {
+    "@nuxtjs/apollo": "^4.0.0-rc19",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "nuxt": "^2.0.0",
+    "core-js": "^2.5.7",
+    "nuxt": "^2.11.0",
     "vue-luck-draw": "^1.0.7"
   },
   "devDependencies": {

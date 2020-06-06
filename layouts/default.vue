@@ -4,6 +4,8 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
+      color="#FF9800"
+      dark
       fixed
       app
     >
@@ -24,8 +26,8 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app color="#FF9800">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="white" />
+    <v-app-bar :clipped-left="clipped" fixed app flat>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" color="gray" />
       <!--      <v-btn @click.stop="miniVariant = !miniVariant" icon>-->
       <!--        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>-->
       <!--      </v-btn>-->
@@ -35,10 +37,15 @@
       <!--      <v-btn @click.stop="fixed = !fixed" icon>-->
       <!--        <v-icon>mdi-minus</v-icon>-->
       <!--      </v-btn>-->
-      <v-toolbar-title v-text="title" class="white--text" />
+      <v-toolbar-title>
+        <v-img
+          src="https://res.cloudinary.com/musbell/image/upload/v1580986143/CORPAP3_btmvyg.png"
+          max-width="200"
+        />
+      </v-toolbar-title>
       <v-spacer />
       <v-btn @click.stop="rightDrawer = !rightDrawer" icon>
-        <v-icon color="white">mdi-power-off</v-icon>
+        <v-icon color="grey">mdi-power-off</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -68,7 +75,7 @@
 export default {
   data() {
     return {
-      clipped: true,
+      clipped: false,
       drawer: true,
       fixed: false,
       items: [

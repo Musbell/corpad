@@ -11,7 +11,7 @@
                 <div>
                   <v-card-title
                     v-text="item.title"
-                    class="headline"
+                    class="title"
                   ></v-card-title>
 
                   <v-card-subtitle v-text="item.artist"></v-card-subtitle>
@@ -23,7 +23,9 @@
                 </v-avatar>
               </div>
               <v-card-actions>
-                <v-btn nuxt to="game" color="primary" dark>Join Now</v-btn>
+                <v-btn :to="item.link" nuxt color="white" class="black--text"
+                  >Join Category</v-btn
+                >
               </v-card-actions>
             </v-card>
           </v-hover>
@@ -41,28 +43,31 @@ export default {
   data: () => ({
     items: [
       {
-        color: '#1F7087',
-        src:
-          'https://buzznigeria.com/wp-content/uploads/2013/11/naira1000-e1433411934680-640x449.jpg',
-        title: 'Group 1',
-        artist: ' ₦10,000',
-        members: '20 members'
-      },
-      {
         color: '#952175',
         src:
           'https://risenetworks.org/wp-content/uploads/2014/11/naira-notes1.jpg',
-        title: 'Group 2',
-        artist: '#20,000',
-        members: '20 members'
+        title: 'Adashi',
+        artist: 'Savings',
+        // members: '1,000,0000 on track',
+        link: '/adashiCategory'
       },
       {
         color: '#1F7087',
         src:
+          'https://buzznigeria.com/wp-content/uploads/2013/11/naira1000-e1433411934680-640x449.jpg',
+        title: 'Personal',
+        artist: ' Savings',
+        // members: '10,000 on track',
+        link: '/savings'
+      },
+      {
+        color: '#2E7D32',
+        src:
           'https://media.gettyimages.com/photos/cropped-hand-of-person-holding-paper-currency-picture-id1188415524?s=612x612',
-        title: 'Group 3',
-        artist: '₦30,000',
-        members: '20 members'
+        title: 'Commodity Loan',
+        artist: 'Up to ₦30,000',
+        // members: '1000 on track',
+        link: '/acquireLoan'
       }
     ]
   })

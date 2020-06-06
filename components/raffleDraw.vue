@@ -1,36 +1,32 @@
 <template>
-  <v-app id="inspire">
-    <v-container>
-      <v-row align="center" justify="center">
-        <v-col cols="12" sm="8" md="4">
-          <div id="app">
-            <LuckDraw
-              v-model="currIndex"
-              :awards="awards"
-              :rate="rate"
-              :radius="radius"
-              :textFontSize="textFontSize"
-              :lineHeight="lineHeight"
-              :textColor="textColor"
-              :textMargin="textMargin"
-              :textPadding="textPadding"
-              :btnFontSize="btnFontSize"
-              :btnColor="btnColor"
-              :btnBorderColor1="btnBorderColor1"
-              :btnBorderColor2="btnBorderColor2"
-              :btnBorderColor3="btnBorderColor3"
-              :btnBgColor="btnBgColor"
-              :btnText="btnText"
-              :btnRadius="btnRadius"
-              :borderColor="borderColor"
-              @start="handleStart"
-              @end="handleEnd"
-            />
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-app>
+  <v-container>
+    <v-row align="center" justify="center">
+      <v-col cols="12">
+        <LuckDraw
+          v-model="currIndex"
+          :awards="awards"
+          :rate="rate"
+          :radius="radius"
+          :textFontSize="textFontSize"
+          :lineHeight="lineHeight"
+          :textColor="textColor"
+          :textMargin="textMargin"
+          :textPadding="textPadding"
+          :btnFontSize="btnFontSize"
+          :btnColor="btnColor"
+          :btnBorderColor1="btnBorderColor1"
+          :btnBorderColor2="btnBorderColor2"
+          :btnBorderColor3="btnBorderColor3"
+          :btnBgColor="btnBgColor"
+          :btnText="btnText"
+          :btnRadius="btnRadius"
+          :borderColor="borderColor"
+          @start="handleStart"
+          @end="handleEnd"
+        />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -38,7 +34,7 @@ export default {
   name: 'RaffleDraw',
   data() {
     return {
-      currIndex: 0,
+      currIndex: null,
       rate: 80,
       radius: 200,
       textFontSize: '13px',
@@ -56,16 +52,19 @@ export default {
       btnRadius: 60,
       borderColor: '#d64737',
       awards: [
-        { name: 'Category 1', color: '#f9e3bb' },
-        { name: 'Category 2', color: '#f8d384' },
-        { name: 'Category 3', color: '#f9e3bb' },
-        { name: 'Category 4', color: '#f8d384' },
-        { name: 'Category 5', color: '#f9e3bb' },
-        { name: 'Category 6', color: '#f8d384' },
-        { name: 'Category 7', color: '#f9e3bb' },
-        { name: 'Category 8', color: '#f8d384' }
+        { name: 'Position 1', color: '#f9e3bb' },
+        { name: 'Position 2', color: '#f8d384' },
+        { name: 'Position 3', color: '#f9e3bb' },
+        { name: 'Position 4', color: '#f8d384' },
+        { name: 'Position 5', color: '#f9e3bb' },
+        { name: 'Position 6', color: '#f8d384' },
+        { name: 'Position 7', color: '#f9e3bb' },
+        { name: 'Position 8', color: '#f8d384' }
       ]
     }
+  },
+  mounted() {
+    this.currIndex = Math.floor(Math.random() * this.awards.length)
   },
   methods: {
     handleStart() {
@@ -73,6 +72,12 @@ export default {
     },
     handleEnd(index) {
       alert('Hurray! you belong to ' + this.awards[this.currIndex].name)
+      this.$emit('closeDialog')
+      this.awards = [
+        ...this.awards.filter((i) => i !== this.awards[this.currIndex])
+      ]
+      console.log('new awards', this.awards)
+      this.currIndex = Math.floor(Math.random() * this.awards.length)
     }
   }
 }

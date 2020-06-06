@@ -17,7 +17,8 @@ export default {
     return {
       items: [
         {
-          src: 'https://winglechin.files.wordpress.com/2013/04/cnybanner.jpg'
+          src:
+            'https://media.gettyimages.com/vectors/banking-finance-banner-and-icons-vector-id629162108'
         },
         {
           src:

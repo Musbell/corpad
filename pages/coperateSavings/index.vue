@@ -1,32 +1,54 @@
 <template>
   <v-app id="inspire">
     <v-container>
-      <v-row align="center" justify="center" class="elevation-5">
-        <v-col cols="12" sm="8" md="4">
-          <LuckDraw
-            v-model="currIndex"
-            :awards="awards"
-            :rate="rate"
-            :radius="radius"
-            :textFontSize="textFontSize"
-            :lineHeight="lineHeight"
-            :textColor="textColor"
-            :textMargin="textMargin"
-            :textPadding="textPadding"
-            :btnFontSize="btnFontSize"
-            :btnColor="btnColor"
-            :btnBorderColor1="btnBorderColor1"
-            :btnBorderColor2="btnBorderColor2"
-            :btnBorderColor3="btnBorderColor3"
-            :btnBgColor="btnBgColor"
-            :btnText="btnText"
-            :btnRadius="btnRadius"
-            :borderColor="borderColor"
-            @start="handleStart"
-            @end="handleEnd"
-          />
-        </v-col>
-      </v-row>
+      <v-alert text color="#FFAB40">
+        <h3 class="headline">Adashi Savings</h3>
+        <div>
+          Maecenas nec odio et ante tincidunt tempus. Sed mollis, eros et
+          ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
+          urna a orci. Proin viverra, ligula sit amet ultrices semper, ligula
+          arcu tristique sapien, a accumsan nisi mauris ac eros. Curabitur
+          turpis.
+        </div>
+
+        <v-divider class="my-4 #FFAB40" style="opacity: 0.22"></v-divider>
+
+        <v-row align="center" no-gutters>
+          <v-col class="grow"
+            >Proin magna. Vivamus in erat ut urna cursus vestibulum. Etiam
+            imperdiet imperdiet orci.</v-col
+          >
+          <v-spacer></v-spacer>
+          <v-col class="shrink">
+            <v-row justify="center">
+              <v-dialog v-model="dialog" persistent max-width="500" scrollable>
+                <template v-slot:activator="{ on }">
+                  <v-btn v-on="on" color="#FFAB40" outlined class="ma-5">
+                    Spin Now!
+                  </v-btn>
+                </template>
+                <v-card>
+                  <v-card-title class="headline"
+                    >Spin to be a member</v-card-title
+                  >
+                  <v-card-text>
+                    <raffle-draw @closeDialog="dialog = false" />
+                  </v-card-text>
+                  <v-card-actions>
+                    <v-spacer></v-spacer>
+                    <v-btn @click="dialog = false" color="orange darken-1" text
+                      >Close</v-btn
+                    >
+                    <!--                    <v-btn @click="dialog = false" color="green darken-1" text-->
+                    <!--                      >Agree</v-btn-->
+                    <!--                    >-->
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-row>
+          </v-col>
+        </v-row>
+      </v-alert>
       <v-subheader>Joined members</v-subheader>
       <v-row class="pa-4" justify="space-between">
         <v-col cols="12" sm="5">
@@ -44,6 +66,7 @@
               <v-icon v-if="!item.children">mdi-account</v-icon>
             </template>
           </v-treeview>
+          <v-btn block color="error" dark>Opt out</v-btn>
         </v-col>
 
         <v-divider vertical></v-divider>
@@ -55,7 +78,7 @@
               class="title grey--text text--lighten-1 font-weight-light"
               style="align-self: center;"
             >
-              Select a User
+              Select a Member
             </div>
             <v-card
               v-else
@@ -74,6 +97,11 @@
                 <h3 class="headline mb-2">
                   {{ selected.name }}
                 </h3>
+                <div>
+                  <v-badge color="orange" content="6">
+                    Position {{ selected.id }}
+                  </v-badge>
+                </div>
                 <div class="blue--text mb-2">{{ selected.email }}</div>
                 <div class="blue--text subheading font-weight-bold">
                   {{ selected.username }}
@@ -107,6 +135,7 @@
 </template>
 
 <script>
+import RaffleDraw from '../../components/raffleDraw'
 const avatars = [
   '?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
   '?accessoriesType=Sunglasses&avatarStyle=Circle&clotheColor=Gray02&clotheType=ShirtScoopNeck&eyeType=EyeRoll&eyebrowType=RaisedExcited&facialHairColor=Red&facialHairType=BeardMagestic&hairColor=Red&hatColor=White&mouthType=Twinkle&skinColor=DarkBrown&topType=LongHairBun',
@@ -118,46 +147,22 @@ const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export default {
   name: 'Index',
+  components: { RaffleDraw },
   data() {
     return {
       active: [],
       avatar: null,
       open: [],
       users: [],
-      currIndex: 0,
-      rate: 80,
-      radius: 200,
-      textFontSize: '13px',
-      lineHeight: 20, // 文字行高
-      textColor: '#d64737',
-      textMargin: 30,
-      textPadding: 0,
-      btnFontSize: '26px',
-      btnColor: '#d64737',
-      btnBorderColor1: '#d64737',
-      btnBorderColor2: '#ffffff',
-      btnBorderColor3: '#f6c66f',
-      btnBgColor: '#ffdea0',
-      btnText: 'Play',
-      btnRadius: 60,
-      borderColor: '#d64737',
-      awards: [
-        { name: 'Position 1', color: '#f9e3bb' },
-        { name: 'Position 2', color: '#f8d384' },
-        { name: 'Position 3', color: '#f9e3bb' },
-        { name: 'Position 4', color: '#f8d384' },
-        { name: 'Position 5', color: '#f9e3bb' },
-        { name: 'Position 6', color: '#f8d384' },
-        { name: 'Position 7', color: '#f9e3bb' },
-        { name: 'Position 8', color: '#f8d384' }
-      ]
+      alert: true,
+      dialog: false
     }
   },
   computed: {
     items() {
       return [
         {
-          name: 'Users',
+          name: 'Members',
           children: this.users
         }
       ]
@@ -176,12 +181,6 @@ export default {
   },
 
   methods: {
-    handleStart() {
-      // console.log('Draw start')
-    },
-    handleEnd(index) {
-      alert('Hurray! you belong to ' + this.awards[this.currIndex].name)
-    },
     async fetchUsers(item) {
       // Remove in 6 months and say
       // you've made optimizations! :)

@@ -27,7 +27,7 @@
       </v-tooltip>
     </v-toolbar>
     <v-card-text>
-      <v-form>
+      <v-form @submit.prevent="login">
         <v-text-field
           label="Login"
           name="login"
@@ -46,7 +46,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer />
-      <v-btn color="primary" nuxt to="/">Login</v-btn>
+      <v-btn color="primary" type="submit">Login</v-btn>
     </v-card-actions>
   </v-card>
 </template>
@@ -57,6 +57,17 @@ export default {
   layout: 'auth',
   props: {
     source: String
+  },
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login() {
+      console.log('login')
+    }
   }
 }
 </script>
