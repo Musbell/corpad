@@ -14,7 +14,7 @@
       </v-tabs>
       <v-tabs-items v-model="model" style="background-color: transparent">
         <v-tab-item value="tab-1">
-          <v-row>
+          <v-row v-if="savings">
             <v-col v-for="(s, i) in 2" :key="i" cols="12" sm="6">
               <v-card class="mt-4 mx-auto" max-width="400">
                 <v-sheet
@@ -50,9 +50,42 @@
               </v-card>
             </v-col>
           </v-row>
+          <div v-else>
+            <p>You havent made any savings yet.</p>
+            <nuxt-link to="/payments">Start saving now</nuxt-link>
+          </div>
+          <v-row v-if="savings">
+            <v-btn class="primary" nuxt to="/savings/history">History</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn class="primary" nuxt to="/payments/withdraw">Withdraw</v-btn>
+            <v-spacer></v-spacer>
+            <v-btn class="primary" nuxt to="/payments">make Payment</v-btn>
+          </v-row>
         </v-tab-item>
         <v-tab-item value="tab-2">
-          bkbbb
+          <v-card v-if="corporate">
+            <v-card-title>My Adashi</v-card-title>
+            <v-card-text>
+              <p>Category Name: Young Millionaires</p>
+              <p>Monthly Fee: NGN 30000</p>
+              <p>Monthly Payment: Paid</p>
+              <p>Position: 02</p>
+              <p>Payment Interval: Monthly</p>
+              <p>Payment Recieved: Yes</p>
+              <p>Payment Rounds Left: 9</p>
+              <v-row>
+                <v-btn class="primary" nuxt to="/adashiCategory/history"
+                  >History</v-btn
+                >
+                <v-spacer></v-spacer>
+                <v-btn class="primary" nuxt to="/payments">make Payment</v-btn>
+              </v-row>
+            </v-card-text>
+          </v-card>
+          <div v-else>
+            <p>You dont belong to any Adashi Category.</p>
+            <nuxt-link to="/adashiCategory">Join a category</nuxt-link>
+          </div>
         </v-tab-item>
       </v-tabs-items>
     </v-col>
@@ -65,7 +98,9 @@ export default {
   data: () => ({
     labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
     value: [200, 675, 410, 390, 310, 460, 250, 240],
-    model: 'tab-2'
+    model: 'tab-2',
+    corporate: true,
+    savings: true
   })
 }
 </script>
