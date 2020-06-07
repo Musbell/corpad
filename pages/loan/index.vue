@@ -186,7 +186,6 @@ export default {
       {
         text: 'Date',
         align: 'left',
-        sortable: false,
         value: 'date'
       },
       { text: 'Ammount', value: 'ammount' },
@@ -206,7 +205,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 10000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -214,7 +213,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 12000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -222,7 +221,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 40000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -230,7 +229,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 21000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -238,7 +237,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 16000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -246,7 +245,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 20500,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -254,7 +253,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 22000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -262,7 +261,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 1000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
@@ -270,7 +269,7 @@ export default {
       },
       {
         date: '12/06/2020',
-        ammount: 20000,
+        ammount: 17000,
         status: 'New',
         borrower: 'Bello Musa',
         close: '12/12/2020',
