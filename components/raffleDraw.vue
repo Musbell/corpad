@@ -32,6 +32,7 @@
 <script>
 export default {
   name: 'RaffleDraw',
+  props: ['maxUsers'],
   data() {
     return {
       currIndex: null,
@@ -48,23 +49,35 @@ export default {
       btnBorderColor2: '#ffffff',
       btnBorderColor3: '#f6c66f',
       btnBgColor: '#ffdea0',
-      btnText: 'Play',
+      btnText: 'Spin',
       btnRadius: 60,
-      borderColor: '#d64737',
-      awards: [
-        { name: 'Position 1', color: '#f9e3bb' },
-        { name: 'Position 2', color: '#f8d384' },
-        { name: 'Position 3', color: '#f9e3bb' },
-        { name: 'Position 4', color: '#f8d384' },
-        { name: 'Position 5', color: '#f9e3bb' },
-        { name: 'Position 6', color: '#f8d384' },
-        { name: 'Position 7', color: '#f9e3bb' },
-        { name: 'Position 8', color: '#f8d384' }
-      ]
+      borderColor: '#d64737'
+      // awards: [
+      //   { name: 'Position 1', color: '#f9e3bb' },
+      //   { name: 'Position 2', color: '#f8d384' },
+      //   { name: 'Position 3', color: '#f9e3bb' },
+      //   { name: 'Position 4', color: '#f8d384' },
+      //   { name: 'Position 5', color: '#f9e3bb' },
+      //   { name: 'Position 6', color: '#f8d384' },
+      //   { name: 'Position 7', color: '#f9e3bb' },
+      //   { name: 'Position 8', color: '#f8d384' }
+      // ]
     }
   },
   mounted() {
     this.currIndex = Math.floor(Math.random() * this.awards.length)
+  },
+  computed: {
+    awards() {
+      const arr = []
+      for (let i = 1; i <= this.maxUsers; i++) {
+        arr.push({
+          name: `pos ${i}`,
+          color: i % 2 === 0 ? '#f9e3bb' : '#f8d384'
+        })
+      }
+      return arr
+    }
   },
   methods: {
     handleStart() {

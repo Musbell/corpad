@@ -18,3 +18,13 @@ export const state = () => ({
 })
 
 export const mutations = {}
+
+export const getters = {
+  findCategory(state) {
+    return (id) => {
+      return state.categories.find((cat) => {
+        return cat.id === id
+      })
+    }
+  }
+}

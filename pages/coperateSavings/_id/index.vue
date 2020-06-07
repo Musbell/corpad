@@ -1,9 +1,11 @@
 <template>
   <v-app id="inspire">
-    <PageTitle :title="`Category ${$route.params.id}`"></PageTitle>
+    <PageTitle
+      :title="`Category ${$route.params.id} ${category.name}`"
+    ></PageTitle>
     <v-container>
       <v-alert text color="#FFAB40">
-        <h3 class="headline">Adashi Savings</h3>
+        <h3 class="headline">Group Description</h3>
         <div>
           Maecenas nec odio et ante tincidunt tempus. Sed mollis, eros et
           ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
@@ -15,10 +17,10 @@
         <v-divider class="my-4 #FFAB40" style="opacity: 0.22"></v-divider>
 
         <v-row align="center" no-gutters>
-          <v-col class="grow"
-            >Proin magna. Vivamus in erat ut urna cursus vestibulum. Etiam
-            imperdiet imperdiet orci.</v-col
-          >
+          <v-col class="grow">
+            <p>Number of users: {{ category.members }} Members</p>
+            <p>Maximum Users: {{ category.maxMembers }} Members</p>
+          </v-col>
           <v-spacer></v-spacer>
           <v-col class="shrink">
             <v-row justify="center">
@@ -33,7 +35,10 @@
                     >Spin to be a member</v-card-title
                   >
                   <v-card-text>
-                    <raffle-draw @closeDialog="dialog = false" />
+                    <raffle-draw
+                      @closeDialog="dialog = false"
+                      :maxUsers="+category.maxMembers"
+                    />
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -174,9 +179,13 @@ export default {
       const id = this.active[0]
 
       return this.users.find((user) => user.id === id)
+    },
+    category() {
+      return this.$store.state.adashi.categories.find((cat) => {
+        return cat.id === this.$route.params.id
+      })
     }
   },
-
   watch: {
     selected: 'randomAvatar'
   },

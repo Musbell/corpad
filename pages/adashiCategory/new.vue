@@ -46,13 +46,14 @@
           <v-select
             v-model="interval"
             :items="ints"
-            label="Select Interval"
+            label="Select Payment Interval"
             item-value="text"
           ></v-select>
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" type="submit">login</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="primary" type="submit">Add</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
