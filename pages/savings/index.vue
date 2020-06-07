@@ -54,13 +54,20 @@
             <p>You havent made any savings yet.</p>
             <nuxt-link to="/payments">Start saving now</nuxt-link>
           </div>
-          <v-row v-if="savings">
-            <v-btn class="primary" nuxt to="/savings/history">History</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn class="primary" nuxt to="/payments/withdraw">Withdraw</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn class="primary" nuxt to="/payments">make Payment</v-btn>
-          </v-row>
+          <div v-if="savings">
+            <v-row class="mb-2">
+              <v-btn class="primary" nuxt to="/payments/withdraw"
+                >Withdraw</v-btn
+              >
+              <v-spacer></v-spacer>
+              <v-btn class="primary" nuxt to="/payments">make Payment</v-btn>
+            </v-row>
+            <v-row class="mb-2">
+              <v-spacer></v-spacer>
+              <v-btn class="primary" nuxt to="/savings/history">History</v-btn>
+              <v-spacer></v-spacer>
+            </v-row>
+          </div>
         </v-tab-item>
         <v-tab-item value="tab-2">
           <v-card v-if="corporate">
