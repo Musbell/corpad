@@ -27,7 +27,7 @@ export default {
         {
           date: '05/02/2020',
           ammount: 20000,
-          status: 'New',
+          status: 'Completed',
           category: 'Young Millionaires',
           method: 'PayStack',
           type: 'Debit'
@@ -35,7 +35,7 @@ export default {
         {
           date: '05/03/2020',
           ammount: 20000,
-          status: 'New',
+          status: 'Completed',
           category: 'Young Millionaires',
           method: 'PayStack',
           type: 'Debit'
@@ -43,7 +43,7 @@ export default {
         {
           date: '05/04/2020',
           ammount: 20000,
-          status: 'New',
+          status: 'Completed',
           category: 'Young Millionaires',
           method: 'Transfer',
           type: 'Debit'
@@ -51,7 +51,7 @@ export default {
         {
           date: '05/05/2020',
           ammount: 180000,
-          status: 'New',
+          status: 'Completed',
           category: 'Young Millionaires',
           method: 'PayStack',
           type: 'Credit'
