@@ -68,6 +68,9 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
+    '@nuxtjs/apollo',
   ],
   /*
    ** Axios module configuration
@@ -79,6 +82,81 @@ export default {
    ** See https://content.nuxtjs.org/configuration
    */
   content: {},
+  // Give apollo module options
+  apollo: {
+    tokenName: 'yourApolloTokenName', // optional, default: apollo-token
+    cookieAttributes: {
+      /**
+       * Define when the cookie will be removed. Value can be a Number
+       * which will be interpreted as days from time of creation or a
+       * Date instance. If omitted, the cookie becomes a session cookie.
+       */
+      expires: 7, // optional, default: 7 (days)
+
+      /**
+       * Define the path where the cookie is available. Defaults to '/'
+       */
+      path: '/', // optional
+      /**
+       * Define the domain where the cookie is available. Defaults to
+       * the domain of the page where the cookie was created.
+       */
+      domain: 'example.com', // optional
+
+      /**
+       * A Boolean indicating if the cookie transmission requires a
+       * secure protocol (https). Defaults to false.
+       */
+      secure: false,
+    },
+    includeNodeModules: true, // optional, default: false (this includes graphql-tag for node_modules folder)
+    authenticationType: 'Basic', // optional, default: 'Bearer'
+    // (Optional) Default 'apollo' definition
+    defaultOptions: {
+      // See 'apollo' definition
+      // For example: default query options
+      $query: {
+        loadingKey: 'loading',
+        fetchPolicy: 'cache-and-network',
+      },
+    },
+    // // optional
+    // watchLoading: '~/plugins/apollo-watch-loading-handler.js',
+    // // optional
+    // errorHandler: '~/plugins/apollo-error-handler.js',
+    // required
+    clientConfigs: {
+      default: {
+        // required
+        httpEndpoint: 'https://corpad.herokuapp.com/v1/graphql',
+        // optional
+        // override HTTP endpoint in browser only
+        browserHttpEndpoint: '/graphql',
+        // optional
+        // See https://www.apollographql.com/docs/link/links/http.html#options
+        httpLinkOptions: {
+          credentials: 'same-origin',
+        },
+        // You can use `wss` for secure connection (recommended in production)
+        // Use `null` to disable subscriptions
+        wsEndpoint: 'wss://corpad.herokuapp.com/v1/graphql', // optional
+        // LocalStorage token
+        tokenName: 'apollo-token', // optional
+        // Enable Automatic Query persisting with Apollo Engine
+        persisting: false, // Optional
+        // Use websockets for everything (no HTTP)
+        // You need to pass a `wsEndpoint` for this to work
+        websocketsOnly: false, // Optional
+      },
+      // test: {
+      //   httpEndpoint: 'http://localhost:5000',
+      //   wsEndpoint: 'ws://localhost:5000',
+      //   tokenName: 'apollo-token'
+      // },
+      // // alternative: user path to config which returns exact same config options
+      // test2: '~/plugins/my-alternative-apollo-config.js'
+    },
+  },
   /*
    ** vuetify module configuration
    ** https://github.com/nuxt-community/vuetify-module
@@ -104,5 +182,26 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
-  build: {},
+  build: {
+    /*
+     ** You can extend webpack config here
+     */
+    /*
+     ** You can extend webpack config here
+     */
+    babel: {
+      presets({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 },
+            },
+          ],
+        ]
+      },
+    },
+  },
 }

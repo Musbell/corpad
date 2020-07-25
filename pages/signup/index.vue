@@ -7,17 +7,28 @@
       <v-card flat color="transparent" class="pa-2" height="400">
         <v-card-text>
           <v-toolbar flat class="mb-5" color="transparent">
-            <v-toolbar-title class="white--text">Login form</v-toolbar-title>
+            <v-toolbar-title class="white--text">Signup form</v-toolbar-title>
           </v-toolbar>
           <v-form>
             <v-text-field
-              label="Login"
-              name="login"
+              label="username"
+              name="username"
               prepend-icon="mdi-account"
               type="text"
               dark
               outlined
+              dense
               rounded
+            ></v-text-field>
+            <v-text-field
+              label="email"
+              name="email"
+              prepend-icon="mdi-email"
+              type="text"
+              dark
+              outlined
+              rounded
+              dense
             ></v-text-field>
 
             <v-text-field
@@ -29,16 +40,27 @@
               dark
               outlined
               rounded
+              dense
+            ></v-text-field>
+            <v-text-field
+              id="confirmPassword"
+              label="Password"
+              name="confirmPassword"
+              prepend-icon="mdi-lock"
+              type="password"
+              dark
+              outlined
+              rounded
+              dense
             ></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-spacer></v-spacer>
           <v-btn block rounded color="white" class="orange--text">Login</v-btn>
         </v-card-actions>
         <span class="white--text"
-          >Doesn't have an account?
-          <v-btn text color="white" nuxt to="/signup">Sign up</v-btn></span
+          >Already have an account?
+          <v-btn text color="white" nuxt to="/login">Sign in</v-btn></span
         >
       </v-card>
     </v-col>

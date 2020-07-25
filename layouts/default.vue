@@ -1,9 +1,11 @@
 <template>
-  <v-app>
+  <v-app dark>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
+      color="#FF9800"
+      dark
       fixed
       app
     >
@@ -24,21 +26,26 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar :clipped-left="clipped" fixed app>
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-btn icon @click.stop="miniVariant = !miniVariant">
-        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="clipped = !clipped">
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
-      <v-btn icon @click.stop="fixed = !fixed">
-        <v-icon>mdi-minus</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title" />
+    <v-app-bar :clipped-left="clipped" fixed app flat>
+      <v-app-bar-nav-icon color="gray" @click.stop="drawer = !drawer" />
+      <!--      <v-btn @click.stop="miniVariant = !miniVariant" icon>-->
+      <!--        <v-icon>mdi-{{ `chevron-${miniVariant ? 'right' : 'left'}` }}</v-icon>-->
+      <!--      </v-btn>-->
+      <!--      <v-btn @click.stop="clipped = !clipped" icon>-->
+      <!--        <v-icon>mdi-application</v-icon>-->
+      <!--      </v-btn>-->
+      <!--      <v-btn @click.stop="fixed = !fixed" icon>-->
+      <!--        <v-icon>mdi-minus</v-icon>-->
+      <!--      </v-btn>-->
+      <v-toolbar-title>
+        <v-img
+          src="https://res.cloudinary.com/musbell/image/upload/v1580986143/CORPAP3_btmvyg.png"
+          max-width="200"
+        />
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-menu</v-icon>
+        <v-icon color="grey">mdi-power-off</v-icon>
       </v-btn>
     </v-app-bar>
     <v-content>
@@ -50,7 +57,7 @@
       <v-list>
         <v-list-item @click.native="right = !right">
           <v-list-item-action>
-            <v-icon light>
+            <v-icon light color="white">
               mdi-repeat
             </v-icon>
           </v-list-item-action>
@@ -58,9 +65,9 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-footer :absolute="!fixed" app>
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
+    <!--    <v-footer :fixed="fixed" app>-->
+    <!--      <span>&copy; 2019</span>-->
+    <!--    </v-footer>-->
   </v-app>
 </template>
 
@@ -69,7 +76,7 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: false,
+      drawer: true,
       fixed: false,
       items: [
         {
@@ -79,14 +86,24 @@ export default {
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire',
+          title: 'Profile',
+          to: '/profile',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Savings',
+          to: '/savings',
+        },
+        {
+          icon: 'mdi-chart-bubble',
+          title: 'Loan',
+          to: '/loan',
         },
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Vuetify.js',
+      title: 'Corpad',
     }
   },
 }

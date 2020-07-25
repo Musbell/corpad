@@ -1,0 +1,11 @@
+query adashiCategories {
+  Categories {
+    id
+    member_size
+    name
+    rotation_cumulative_fund
+    rotation_days
+    roundup_days
+    savings
+  }
+}
