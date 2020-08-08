@@ -12,20 +12,20 @@
           >
             <v-container>
               <v-avatar size="100">
-                <img
-                  src="https://res.cloudinary.com/musbell/image/upload/v1567088793/planta/iihjeofuq2luewvuhxkj.svg"
-                  alt="avatar"
-                />
+                <!--                <img-->
+                <!--                  src="https://res.cloudinary.com/musbell/image/upload/v1567088793/planta/iihjeofuq2luewvuhxkj.svg"-->
+                <!--                  alt="avatar"-->
+                <!--                />-->
                 <!--                <img :src="$auth.user.picture" alt="avatar" />-->
               </v-avatar>
             </v-container>
           </v-sheet>
           <v-card-text class="pt-0">
             <div class="title font-weight-light mb-2">
-              UserID: Musbell
+              <!--              UserID: {{ user.email }}-->
             </div>
             <div class="subheading font-weight-light grey--text">
-              Bello Musa
+              <!--              {{ user.displayName }}-->
             </div>
             <v-divider class="my-2" />
             <v-icon class="mr-2" small>
@@ -130,8 +130,26 @@
 </template>
 
 <script>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+
 export default {
   name: 'Index',
+
+  computed() {
+    const user = firebase.auth().currentUser
+    let uid
+    if (user != null) {
+      // name = user.displayName
+      // email = user.email
+      // photoUrl = user.photoURL
+      // emailVerified = user.emailVerified
+      uid = user.uid
+    }
+  },
+
+  methods: {},
 }
 </script>
 

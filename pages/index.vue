@@ -24,7 +24,7 @@
               </div>
               <v-card-actions>
                 <v-btn :to="item.link" nuxt color="white" class="black--text"
-                  >Join Category</v-btn
+                  >Apply</v-btn
                 >
               </v-card-actions>
             </v-card>
@@ -64,8 +64,8 @@ export default {
         color: '#2E7D32',
         src:
           'https://media.gettyimages.com/photos/cropped-hand-of-person-holding-paper-currency-picture-id1188415524?s=612x612',
-        title: 'Commodity Loan',
-        artist: 'Up to ₦30,000',
+        title: 'On-credit Commodity ',
+        artist: 'Up to ₦1,000,000',
         // members: '1000 on track',
         link: '/acquireLoan',
       },

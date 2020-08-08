@@ -1,9 +1,14 @@
 <template>
   <div class="VueToNuxtLogo">
-    <div class="Triangle Triangle--two" />
-    <div class="Triangle Triangle--one" />
-    <div class="Triangle Triangle--three" />
-    <div class="Triangle Triangle--four" />
+    <img
+      class="VuetifyLogo"
+      alt="Vuetify Logo"
+      src="https://res.cloudinary.com/musbell/image/upload/v1580986143/CORPAP3_btmvyg.png"
+    />
+    <!--    <div class="Triangle Triangle&#45;&#45;two" />-->
+    <!--    <div class="Triangle Triangle&#45;&#45;one" />-->
+    <!--    <div class="Triangle Triangle&#45;&#45;three" />-->
+    <!--    <div class="Triangle Triangle&#45;&#45;four" />-->
   </div>
 </template>
 

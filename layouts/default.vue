@@ -44,15 +44,31 @@
         />
       </v-toolbar-title>
       <v-spacer />
+      <v-badge color="error" overlap class="mr4">
+        <template slot="badge">
+          6
+        </template>
+        <v-icon color="grey">mdi-bell</v-icon> </v-badge
+      ><br />
+      <v-icon color="red">mdi-power</v-icon>
+
+      <v-avatar>
+        <v-img
+          height="40"
+          width="40"
+          src="https://thumbnails.yayimages.com/1600/b/1ff/b1ff916.jpg"
+        ></v-img>
+      </v-avatar>
+
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon color="grey">mdi-power-off</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
     <v-navigation-drawer v-model="rightDrawer" :right="right" temporary fixed>
       <v-list>
         <v-list-item @click.native="right = !right">
@@ -80,22 +96,27 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Welcome',
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-view-dashboard',
+          title: 'Dashboard',
+          to: '/dashboard',
+        },
+        {
+          icon: 'mdi-account-cash',
           title: 'Profile',
           to: '/profile',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-bank',
           title: 'Savings',
           to: '/savings',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-package  ',
           title: 'Loan',
           to: '/loan',
         },

@@ -1,5 +1,5 @@
 import colors from 'vuetify/es5/util/colors'
-
+import 'dotenv/config'
 export default {
   /*
    ** Nuxt rendering mode
@@ -44,7 +44,7 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: [],
+  plugins: ['~/plugins/firebase.js'],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
@@ -65,6 +65,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt/content
     '@nuxt/content',
@@ -72,6 +73,23 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
   ],
+
+  // router: {
+  //   middleware: ['auth'],
+  // },
+  // auth: {
+  //   redirect: {
+  //     login: '/login', // redirect user when not connected
+  //     callback: '/auth/signed-in',
+  //   },
+  //   strategies: {
+  //     local: false,
+  //     auth0: {
+  //       domain: process.env.AUTH0_DOMAIN,
+  //       client_id: process.env.AUTH0_CLIENT_ID,
+  //     },
+  //   },
+  // },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
@@ -182,19 +200,14 @@ export default {
    ** Build configuration
    ** See https://nuxtjs.org/api/configuration-build/
    */
+  // eslint-disable-next-line no-dupe-keys
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    /*
-     ** You can extend webpack config here
-     */
     babel: {
       presets({ isServer }) {
         return [
           [
             require.resolve('@nuxt/babel-preset-app'),
-            // require.resolve('@nuxt/babel-preset-app-edge'), // For nuxt-edge users
+            // require.resolve('@nuxt/babel-preset-appo-edge'), // For nuxt-edge users
             {
               buildTarget: isServer ? 'server' : 'client',
               corejs: { version: 3 },
@@ -204,4 +217,10 @@ export default {
       },
     },
   },
+  /*
+   ** You can extend webpack config here
+   */
+  /*
+   ** You can extend webpack config here
+   */
 }

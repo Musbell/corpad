@@ -9,54 +9,55 @@
           <v-toolbar flat class="mb-5" color="transparent">
             <v-toolbar-title class="white--text">Signup form</v-toolbar-title>
           </v-toolbar>
-          <v-form>
+          <v-form @submit.prevent="pressed">
+            <!--            <v-text-field-->
+            <!--              label="username"-->
+            <!--              name="username"-->
+            <!--              prepend-icon="mdi-account"-->
+            <!--              type="text"-->
+            <!--              dark-->
+            <!--              outlined-->
+            <!--              dense-->
+            <!--              rounded-->
+            <!--            ></v-text-field>-->
             <v-text-field
-              label="username"
-              name="username"
+              v-model="email"
+              label="email"
+              name="email"
+              required
+              :rules="emailRules"
               prepend-icon="mdi-account"
               type="text"
               dark
               outlined
-              dense
               rounded
-            ></v-text-field>
-            <v-text-field
-              label="email"
-              name="email"
-              prepend-icon="mdi-email"
-              type="text"
-              dark
-              outlined
-              rounded
-              dense
             ></v-text-field>
 
             <v-text-field
               id="password"
+              v-model="password"
               label="Password"
               name="password"
-              prepend-icon="mdi-lock"
-              type="password"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="showPassword ? 'text' : 'password'"
+              hint="At least 8 characters"
+              counter
               dark
               outlined
               rounded
-              dense
-            ></v-text-field>
-            <v-text-field
-              id="confirmPassword"
-              label="Password"
-              name="confirmPassword"
-              prepend-icon="mdi-lock"
-              type="password"
-              dark
-              outlined
-              rounded
-              dense
+              @click:append="showPassword = !showPassword"
             ></v-text-field>
           </v-form>
         </v-card-text>
         <v-card-actions>
-          <v-btn block rounded color="white" class="orange--text">Login</v-btn>
+          <v-btn
+            block
+            rounded
+            color="white"
+            class="orange--text"
+            @click="pressed"
+            >Submit</v-btn
+          >
         </v-card-actions>
         <span class="white--text"
           >Already have an account?
@@ -66,11 +67,38 @@
     </v-col>
   </v-row>
 </template>
-
 <script>
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
+
 export default {
   name: 'Index',
   layout: 'authentication',
+
+  data() {
+    return {
+      email: '',
+      password: '',
+      error: '',
+      valid: false,
+      showPassword: false,
+    }
+  },
+  methods: {
+    pressed() {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
+        .then((user) => {
+          console.log(user)
+          this.$router.push('/profile')
+        })
+        .catch((error) => {
+          this.error = error
+        })
+    },
+  },
 }
 </script>
 

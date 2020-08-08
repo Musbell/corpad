@@ -10,6 +10,7 @@
                 >₦10,000</v-list-item-title
               >
               <v-list-item-subtitle>20 members</v-list-item-subtitle>
+              <v-list-item-subtitle>Round up Days-</v-list-item-subtitle>
             </v-list-item-content>
 
             <v-list-item-avatar
@@ -20,7 +21,7 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn text nuxt to="/coperateSavings">Spin draw</v-btn>
+            <v-btn class="success" text nuxt to="/coperateSavings">Join</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
