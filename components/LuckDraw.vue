@@ -32,9 +32,10 @@
 <script>
 export default {
   name: 'RaffleDraw',
-  props: ['maxUsers'],
+  // props: ['maxUsers'],
   data() {
     return {
+      maxUsers: 20,
       currIndex: null,
       rate: 80,
       radius: 200,
@@ -95,5 +96,3 @@ export default {
   }
 }
 </script>
-
-<style scoped></style>

@@ -137,15 +137,17 @@ import 'firebase/auth'
 export default {
   name: 'Index',
 
-  computed() {
-    const user = firebase.auth().currentUser
-    let uid
-    if (user != null) {
-      // name = user.displayName
-      // email = user.email
-      // photoUrl = user.photoURL
-      // emailVerified = user.emailVerified
-      uid = user.uid
+  computed: {
+    currentUser(){
+      const user = firebase.auth().currentUser
+      let uid
+      if (user != null) {
+        // name = user.displayName
+        // email = user.email
+        // photoUrl = user.photoURL
+        // emailVerified = user.emailVerified
+        uid = user.uid
+      }
     }
   },
 

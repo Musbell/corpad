@@ -44,7 +44,10 @@ export default {
    ** Plugins to load before mounting the App
    ** https://nuxtjs.org/guide/plugins
    */
-  plugins: ['~/plugins/firebase.js'],
+  plugins: [
+    { src: '~/plugins/vue-luck-draw.js', mode: 'client' },
+    { src: '~/plugins/firebase.js' }
+  ],
   /*
    ** Auto import components
    ** See https://nuxtjs.org/api/configuration-components
