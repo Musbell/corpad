@@ -180,7 +180,7 @@ export default {
     search: '',
     headers: [
       {
-        Name: 'Category',
+        text: 'Category',
         align: 'start',
         filterable: false,
         value: 'category',

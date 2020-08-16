@@ -1,24 +1,24 @@
 <template>
   <div class="mt4">
-      <v-flex class="mt4">
-        <v-card>
-          <v-card-title>
-            <h3 class="mt4">Adashi History</h3>
-            <v-text-field
-              v-model="search"
+    <v-flex class="mt4">
+      <v-card>
+        <v-card-title>
+          <h3 class="mt4">Adashi History</h3>
+          <v-text-field
+              v-model="search "
               append-icon="search"
-              label="Search"
+              :label='`Search ${param}`'
               single-line
               hide-details
-            ></v-text-field>
+          ></v-text-field>
           </v-card-title>
           <v-data-table
             :headers="headers"
             :items="filtered"
           ></v-data-table>
-        </v-card>
-      </v-flex>
-    </div>
+      </v-card>
+    </v-flex>
+  </div>
 </template>
 <script>
 export default {
