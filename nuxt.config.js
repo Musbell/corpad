@@ -46,6 +46,7 @@ export default {
    */
   plugins: [
     { src: '~/plugins/vue-luck-draw.js', mode: 'client' },
+    { src: '~/plugins/pageTitle.js' },
     { src: '~/plugins/firebase.js' }
   ],
   /*

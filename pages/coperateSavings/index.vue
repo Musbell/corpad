@@ -32,7 +32,7 @@
                     >Spin to be a member</v-card-title
                   >
                   <v-card-text>
-                    <spinner />
+                    <spinner @closeDialog="dialog = false"/>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>

@@ -131,36 +131,18 @@
 <!--        <v-layout justify-center>-->
           <h2 class="adashiHead">Adashi Calender</h2>
 
-          <adashi-calender />
+          <adashi-calender /> 
 <!--        </v-layout>-->
       </v-card>
     </div>
 
-    <div class="mt4">
-      <v-flex class="mt4">
-        <v-card>
-          <v-card-title>
-            <h3 class="mt4">Adashi History</h3>
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="desserts"
-            :search="search"
-          ></v-data-table>
-        </v-card>
-      </v-flex>
-    </div>
+  <HistoryTable :headers="headers" :dataItems="desserts" param="category"/>
+    
   </v-container>
 </template>
 
 <script>
+import HistoryTable from '~/components/HistoryTable'
 import charts from '~/components/charts'
 import AdashiCalender from '~/components/adashiCalender'
 // import gql from 'graphql-tag'
@@ -186,6 +168,7 @@ export default {
   components: {
     AdashiCalender,
     charts,
+    HistoryTable
   },
   data: () => ({
     labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
@@ -197,97 +180,54 @@ export default {
     search: '',
     headers: [
       {
-        text: 'Dessert (100g serving)',
+        Name: 'Category',
         align: 'start',
         filterable: false,
-        value: 'name',
+        value: 'category',
       },
-      { text: 'Calories', value: 'calories' },
-      { text: 'Fat (g)', value: 'fat' },
-      { text: 'Carbs (g)', value: 'carbs' },
-      { text: 'Protein (g)', value: 'protein' },
-      { text: 'Iron (%)', value: 'iron' },
+      { text: 'Ammount', value: 'ammount' },
+      { text: 'Type', value: 'type'},
+      { text: 'Date', value: 'date' },
+      { text: 'Payment Method', value: 'method' },
+      { text: 'Completed', value: 'completed' },
+      { text: 'Status', value: 'status' },
     ],
     desserts: [
       {
-        name: 'Frozen Yogurt',
-        calories: 159,
-        fat: 6.0,
-        carbs: 24,
-        protein: 4.0,
-        iron: '1%',
+        category: 'Young Millionaires',
+        ammount: 10000,
+        type: 'Debit',
+        date: '12/08/2020',
+        method: 'Card',
+        completed: 'True',
+        status: 'Verified',
       },
       {
-        name: 'Ice cream sandwich',
-        calories: 237,
-        fat: 9.0,
-        carbs: 37,
-        protein: 4.3,
-        iron: '1%',
+        category: 'Young Millionaires',
+        ammount: 10000,
+        type: 'Debit',
+        date: '12/09/2020',
+        method: 'Card',
+        completed: 'True',
+        status: 'Verified',
       },
       {
-        name: 'Eclair',
-        calories: 262,
-        fat: 16.0,
-        carbs: 23,
-        protein: 6.0,
-        iron: '7%',
+        category: 'Ultimate',
+        ammount: 10000,
+        type: 'Debit',
+        date: '12/10/2020',
+        method: 'Card',
+        completed: 'True',
+        status: 'Verified',
       },
       {
-        name: 'Cupcake',
-        calories: 305,
-        fat: 3.7,
-        carbs: 67,
-        protein: 4.3,
-        iron: '8%',
-      },
-      {
-        name: 'Gingerbread',
-        calories: 356,
-        fat: 16.0,
-        carbs: 49,
-        protein: 3.9,
-        iron: '16%',
-      },
-      {
-        name: 'Jelly bean',
-        calories: 375,
-        fat: 0.0,
-        carbs: 94,
-        protein: 0.0,
-        iron: '0%',
-      },
-      {
-        name: 'Lollipop',
-        calories: 392,
-        fat: 0.2,
-        carbs: 98,
-        protein: 0,
-        iron: '2%',
-      },
-      {
-        name: 'Honeycomb',
-        calories: 408,
-        fat: 3.2,
-        carbs: 87,
-        protein: 6.5,
-        iron: '45%',
-      },
-      {
-        name: 'Donut',
-        calories: 452,
-        fat: 25.0,
-        carbs: 51,
-        protein: 4.9,
-        iron: '22%',
-      },
-      {
-        name: 'KitKat',
-        calories: 518,
-        fat: 26.0,
-        carbs: 65,
-        protein: 7,
-        iron: '6%',
+        category: 'Super Money',
+        ammount: 10000,
+        type: 'Debit',
+        date: '12/11/2020',
+        method: 'Card',
+        completed: 'True',
+        status: 'Pending',
       },
     ],
   }),
