@@ -131,7 +131,8 @@
 <!--        <v-layout justify-center>-->
           <h2 class="adashiHead">Adashi Calender</h2>
 
-          <adashi-calender /> 
+          <!-- <adashi-calender />  -->
+          <Calendar/>
 <!--        </v-layout>-->
       </v-card>
     </div>
@@ -142,6 +143,7 @@
 </template>
 
 <script>
+import Calendar from '~/components/Calendar'
 import HistoryTable from '~/components/HistoryTable'
 import charts from '~/components/charts'
 import AdashiCalender from '~/components/adashiCalender'
@@ -168,7 +170,8 @@ export default {
   components: {
     AdashiCalender,
     charts,
-    HistoryTable
+    HistoryTable,
+    Calendar
   },
   data: () => ({
     labels: ['12am', '3am', '6am', '9am', '12pm', '3pm', '6pm', '9pm'],
