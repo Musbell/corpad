@@ -46,19 +46,18 @@
         <v-calendar
           ref="calendar"
           v-model="focus"
-          color="primary"
+          color="orange"
           :events="events"
           :type="type"
-          @change="getEvents"
           @click:more="viewDay"
           @click:date="viewDay"
+          :event-color="getEventColor"
         ></v-calendar>
         
           <!-- @change="updateRange" -->
           <!-- @click:event="showEvent" -->
-          <!-- :event-color="getEventColor" -->
+          
       </v-sheet>
-      {{events}}
     </v-col>
   </v-row>
 </template>
@@ -67,6 +66,7 @@
   export default {
     data: () => ({
       focus: '',
+      colors: ['red', 'blue', 'green', 'yellow'],
       type: 'month',
       typeToLabel: {
         month: 'Month',
@@ -74,22 +74,53 @@
         day: 'Day',
       },
       events: [
-        { "name": "Payment", "start": "2020-08-19 00:30",  "color": "blue"},
+        // { "name": "Payment", "start": "2020-08-19", color: "red" },
+        // { "name": "Young Money", "payment": 47500, "start": "2020-08-19", "position": 1 }, { "name": "Young Money", "payment": 47500, "start": "2020-08-26", "position": 2 }
       ],
       categories: [
-        {name : "Young Money", Ammount: 10000, interval: '10', positions: {1: 'Musbell', 2: "Kamal", 3: "Marshall"}, rounds: 3, start: '', finish: ''},
-        {name : "Young Billionaires", Ammount: 30000, interval: '70', positions: {1: 'Seth', 2: "Keith", 3: "Melissa", 4: "Michelle"}, rounds: 4, start: '', finish: ''
-        }
+        {name : "Young Money", Ammount: 10000, payment: 47500, members: 10, interval: '7', start: '2020-08-12', finished: "false"},
+        {name : "Cash Money", Ammount: 30000, payment: 143500, members: 5, interval: '10', start: '2020-08-20', finished: "false"},
       ] 
-      //learn how to convert time into days to set auto interval for dates close to end of the month
     }),
     mounted () {
-      this.$refs.calendar.checkChange()
+      // this.$refs.calendar.checkChange(),
+      this.setEvents()
+    },
+    computed: {
+      
     },
     methods: {
-      getEvents(){
-        //fetch events from the database
-        // console.log(this.focus, this.type)
+      formatDate(date){
+        let d = new Date(date),
+        month = '' + (d.getMonth() + 1),
+        day = ''+  d.getDate(),
+        year = d.getFullYear();
+
+        if(month.length < 2){
+          month = '0' + month;
+        }
+        if(day.length < 2){
+          day = '0' + day;
+        }
+        return [year,  month, day].join('-')
+      },
+      setEvents(){
+        let arr = [];
+        for(let cat in this.categories){
+          for (let i = 0; i< this.categories[cat].members; i++){
+            arr.push({
+              name: this.categories[cat].name,
+              payment: this.categories[cat].payment,
+              start: this.formatDate(new Date(new Date(this.categories[cat].start).getTime() + (86400000 * (i+1) * +this.categories[cat].interval))),
+              position: i+1,
+              color: this.colors[cat]
+            })
+          }
+        }
+       return this.events = arr
+      },
+      getEventColor(event){
+        return event.color
       },
       viewDay ({ date }) {
         this.focus = date
