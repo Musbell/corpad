@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <v-container>
       <v-alert text color="#FFAB40">
-        <h3 class="headline">Adashi Savings</h3>
+        <h3 class="headline">Adashi Savings </h3>
         <div>
           Maecenas nec odio et ante tincidunt tempus. Sed mollis, eros et
           ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
@@ -166,6 +166,9 @@ export default {
           children: this.users,
         },
       ]
+    },
+    para(){
+      return this.$route.params.id;
     },
     selected() {
       if (!this.active.length) return undefined
