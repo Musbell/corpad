@@ -1,7 +1,17 @@
- export const state = () => ({
+import Vuex from 'vuex'
+import categoriesModule from './categories'
 
-})
 
-export const getters = {
 
+const createStore = () => {
+  return new Vuex.Store({
+    modules: {
+      categoriesModule
+    },
+    state: {
+
+    }
+  })
 }
+
+export default createStore;

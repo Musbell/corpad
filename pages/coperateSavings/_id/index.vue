@@ -1,29 +1,32 @@
 <template>
   <v-app id="inspire">
+    <pageTitle :title="singleCategory(id).name" />
     <v-container>
-      <v-alert text color="#FFAB40">
-        <h3 class="headline">Adashi Savings </h3>
+      <v-alert text color="warning">
+        <h4 class="title">Category Name: {{singleCategory(id).name}} </h4>
         <div>
-          Maecenas nec odio et ante tincidunt tempus. Sed mollis, eros et
-          ultrices tempus, mauris ipsum aliquam libero, non adipiscing dolor
-          urna a orci. Proin viverra, ligula sit amet ultrices semper, ligula
-          arcu tristique sapien, a accumsan nisi mauris ac eros. Curabitur
-          turpis.
+          Description: {{singleCategory(id).description}}
         </div>
 
-        <v-divider class="my-4 #FFAB40" style="opacity: 0.22;"></v-divider>
+        <v-divider class="my-4 warning" style="opacity: 0.22;"></v-divider>
 
-        <v-row align="center" no-gutters>
-          <v-col class="grow"
-            >Proin magna. Vivamus in erat ut urna cursus vestibulum. Etiam
-            imperdiet imperdiet orci.</v-col
-          >
-          <v-spacer></v-spacer>
-          <v-col class="shrink">
+        <!-- <v-row align="center" no-gutters> -->
+          <!-- <v-col class="grow"
+            > -->
+            <p>Start Date: {{new Date(singleCategory(id).start).toUTCString()}}</p>
+            <p>Ammount to pay: NGN {{singleCategory(id).ammount}} </p>
+            <p>Payment Interval : {{singleCategory(id).interval}} days</p>
+            <p>Ammount to recieve: NGN {{singleCategory(id).payment}}</p>
+            <p>Maximum Users: {{singleCategory(id).maxUsers}}</p>
+            <p>Current Members: {{singleCategory(id).members}}</p>
+            <!-- </v-col
+          > -->
+          <!-- <v-spacer></v-spacer> -->
+          <!-- <v-col class="shrink"> -->
             <v-row justify="center">
               <v-dialog v-model="dialog" persistent max-width="500" scrollable>
                 <template v-slot:activator="{ on }">
-                  <v-btn color="#FFAB40" outlined class="ma-5" v-on="on">
+                  <v-btn color="#FFAB40" outlined class="ma-5" v-on="on" :disabled="singleCategory(id).members == singleCategory(id).maxUsers">
                     Spin Now!
                   </v-btn>
                 </template>
@@ -46,8 +49,8 @@
                 </v-card>
               </v-dialog>
             </v-row>
-          </v-col>
-        </v-row>
+          <!-- </v-col> -->
+        <!-- </v-row> -->
       </v-alert>
       <v-subheader>Joined members</v-subheader>
       <v-row class="pa-4" justify="space-between">
@@ -131,10 +134,13 @@
         </v-col>
       </v-row>
     </v-container>
+
+    
   </v-app>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 import spinner from '~/components/LuckDraw'
 const avatars = [
   '?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
@@ -159,6 +165,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('categoriesModule', ['singleCategory']),
     items() {
       return [
         {
@@ -167,7 +174,7 @@ export default {
         },
       ]
     },
-    para(){
+    id(){
       return this.$route.params.id;
     },
     selected() {

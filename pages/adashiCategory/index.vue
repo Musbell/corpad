@@ -26,12 +26,13 @@
           </v-card-actions>
         </v-card>
       </v-col>  
-      {{categories}}
+      
     </v-row>
   </v-container>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 // import ADASHI_CATEGORIES from '../../gql/adashiCategory/query/categories'
 import gql from 'graphql-tag'
 export default {
@@ -64,9 +65,7 @@ export default {
     }
   },
   computed: {
-    categories(){
-      console.log(this.$store.getters.getCategories)
-    }  
+    ...mapGetters('categoriesModule', ['categories'])
   }
 }
 </script>
