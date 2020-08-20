@@ -2,6 +2,11 @@
   <v-container>
     <pageTitle title="Categories" />
     <v-row>
+          <v-spacer></v-spacer>
+          <v-btn class="warning" nuxt link to="/adashiCategory/new">New</v-btn>
+          <v-spacer></v-spacer>
+      </v-row>
+    <v-row>
       <v-col v-for="(category, key) in categories" :key="key" cols="12" sm="4">
         <v-card class="mx-auto" max-width="344" outlined>
           <v-list-item three-line>

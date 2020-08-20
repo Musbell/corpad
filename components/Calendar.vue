@@ -105,6 +105,7 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
   export default {
     data: () => ({
       focus: '',
@@ -119,18 +120,18 @@
       selectedEvent: {},
       selectedElement: null,
       selectedOpen: false,
-      categories: [
-        {name : "Young Money", Ammount: 10000, payment: 47500, members: 10, interval: '7', start: '2020-08-12', finished: "false"},
-        {name : "Cash Money", Ammount: 30000, payment: 143500, members: 5, interval: '10', start: '2020-08-20', finished: "false"},
-        {name : "Ultimate", Ammount: 2000, payment: 275000, members: 15, interval: '10', start: '2020-08-20', finished: "false"},
-      ] 
+      // categories: [
+      //   {name : "Young Money", Ammount: 10000, payment: 47500, members: 10, interval: '7', start: '2020-08-12', finished: "false"},
+      //   {name : "Cash Money", Ammount: 30000, payment: 143500, members: 5, interval: '10', start: '2020-08-20', finished: "false"},
+      //   {name : "Ultimate", Ammount: 2000, payment: 275000, members: 15, interval: '10', start: '2020-08-20', finished: "false"},
+      // ] 
     }),
     mounted () {
       // this.$refs.calendar.checkChange(),
       this.setEvents()
     },
     computed: {
-      
+      ...mapGetters('categoriesModule', ['categories'])
     },
     methods: {
       formatDate(date){
