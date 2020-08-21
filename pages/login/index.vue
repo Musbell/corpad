@@ -53,7 +53,8 @@
         </v-card-actions>
         <span class="white--text"
           >Doesn't have an account?
-          <v-btn text color="white" nuxt to="/signup">Sign up</v-btn></span
+          <v-btn text color="white" nuxt to="/signup">Sign up</v-btn>
+          <v-btn text color="white" nuxt to="#">Forgot password?</v-btn></span
         >
       </v-card>
     </v-col>
