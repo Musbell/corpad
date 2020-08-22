@@ -35,7 +35,7 @@
                     >Spin to be a member</v-card-title
                   >
                   <v-card-text>
-                    <spinner @closeDialog="dialog = false"/>
+                    <spinner :category="{members: singleCategory.members}"/>
                   </v-card-text>
                   <v-card-actions>
                     <v-spacer></v-spacer>
@@ -141,7 +141,7 @@
 
 <script>
 import {mapGetters} from 'vuex'
-import spinner from '~/components/LuckDraw'
+import spinner from '~/components/Spinner'
 const avatars = [
   '?accessoriesType=Blank&avatarStyle=Circle&clotheColor=PastelGreen&clotheType=ShirtScoopNeck&eyeType=Wink&eyebrowType=UnibrowNatural&facialHairColor=Black&facialHairType=MoustacheMagnum&hairColor=Platinum&mouthType=Concerned&skinColor=Tanned&topType=Turban',
   '?accessoriesType=Sunglasses&avatarStyle=Circle&clotheColor=Gray02&clotheType=ShirtScoopNeck&eyeType=EyeRoll&eyebrowType=RaisedExcited&facialHairColor=Red&facialHairType=BeardMagestic&hairColor=Red&hatColor=White&mouthType=Twinkle&skinColor=DarkBrown&topType=LongHairBun',
