@@ -1,0 +1,27 @@
+{% extends 'loans/base.html' %}
+{% load static %}
+{% block content %}
+	<div class="row">
+		{% for product in products %}
+		<div class="col-lg-4">
+			<img class="thumbnail" src="{{product.imageURL}}">
+			<div class="box-element product">
+				<h6><strong>Name: </strong>{{product.name}}</h6>
+				<h6><strong>Category: </strong>{{product.category}}</h6>
+				<h6><strong>Cash Price: </strong>{{product.cash_price}}</h6>
+				<h6><strong>Installment: </strong>{{product.installment_price}}</h6>
+				<h6><strong>Paid In: </strong>{{product.period}} months</h6>
+				<hr>
+				<hr>
+
+				<button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button>
+				
+				<a class="btn btn-outline-success" href="#">Pay {{product.cash_price}} in {{product.period}} months</a>
+				<!-- <h4 style="display: inline-block; float: right"><strong>${{product.installment_price}}</strong></h4> -->
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}

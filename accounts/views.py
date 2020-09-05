@@ -1,0 +1,74 @@
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
+from django.views.generic import ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.contrib.auth import login
+from accounts.models import *
+from .forms import *
+from .decorators import *
+from django.views.generic import (ListView, DetailView, CreateView , UpdateView, DeleteView, TemplateView) 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+# Create your views here.
+
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            login(request, new_user)
+            messages.success(request, f"you're welcome to ")
+            return redirect('profile_update')
+    else:
+        form = RegisterForm()
+    return render(request, 'registration/register.html', {'form':form})
+
+@login_required
+def profile(request):
+    
+    return render(request, 'registration/profile.html')
+
+@login_required
+def profileUpdate(request):
+    form = ProfileUpdate(instance=request.user)
+    if request.method == "POST":
+        form = ProfileUpdate(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"You have successfully Updated Your Profile")
+            return redirect('home')
+    return render(request, 'registration/profile_update.html', {'form':form})
+
+# @login_required
+# def ProfileUpdate(request):
+#     form = ProfileUpdate(instance=request.user)
+#     if request.method == "POST":
+#         form = ProfileUpdate(request.POST, request.FILES, instance=request.user)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, F"You have successfully Updated Your Profile")
+#             return redirect('profile')
+#     return render(request, 'registration/profile1_update.html', {'form':form})
+
+
+class Verify(LoginRequiredMixin,CreateView):
+    model = Verification
+    form_class = VerificationForm
+    template_name='registration/new_verify.html'
+    success_url = reverse_lazy('thanks')
+    
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+def thanks(request):
+    return render(request, 'registration/verify_done.html')
+    
+class ProfileList(ListView):
+    model   =   User
+
+
+class ProfileDetail(DetailView):
+    model   =   User
