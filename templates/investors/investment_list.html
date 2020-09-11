@@ -1,100 +1,349 @@
-{% load static %}
-<!DOCTYPE HTML>
-<!--
-	Massively by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>Massively by HTML5 UP</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="{% static 'massive/assets/css/main.css'%}" />
-		<noscript><link rel="stylesheet" href="{% static 'massive/assets/css/noscript.css'%}" /></noscript>
-	</head>
-	<body class="is-preload">
 
-		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in">
+	{% load static %}
+  {% load accounts_tags %} 
+<!doctype html>
+<html lang="en">
 
-				<!-- Intro -->
-					<div id="intro">
-						<h1>CORPAD<br />
-						Investment Program</h1>
-						
-					</div>
+<head>
 
-				<!-- Header -->
-					<header id="header">
-						<a href='{% url "home" %}' class="logo">Adashi</a>
-					</header>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Corpad Platform </title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400&display=swap" rel="stylesheet">
 
-				<!-- Nav -->
-					<nav id="nav">
-						<ul class="links">
-							<li class="active"><a href='{% url "investment_list" %}'>Investment List</a></li>
-							
-							<li><a href='{% url "home" %}'>Home</a></li>
-						</ul>
-						<ul class="icons">
-							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon brands fa-github"><span class="label">Linkedin</span></a></li>
-						</ul>
-					</nav>
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %} ">
 
-				<!-- Main -->
-					<div id="main">
+</head>
 
-						<!-- Featured Post -->
-							<article class="post featured">
-								<header class="major">
-									<span class="date">{% now "jS F Y H:i" %}</span>
-									<h2><a href="#">Powered by</a></h2>
-								</header>
-								<a href="#" class="image main"><img src="{% static 'massive/images/CORPAP3.png' %}" alt="" /></a>
-								<ul class="actions special">
-									<li><a href="#" class="button large">Learn More</a></li>
-								</ul>
-							</article>
+<body>
+<!-- site header -->
+<header id="site-header" class="fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="{%url 'home' %}">
+          <span class="fa fa-shield"></span>CORPAD PLATFORM
+      </a>
+      <button class="navbar-toggler bg-gradient" type="button" data-toggle="collapse"
+          data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
 
-						<!-- Posts -->
-							<section class="posts">
-								{% for x in object_list %}
-								<article>
-									<header>
-										<span class="date">{{x.date}}</span>
-										<h2><a href="#">investment {{x.id}}</a></h2>
-									</header>
-									<a href="#" class="image fit"><img src="{% static 'massive/images/CORPAP3.png ' %}" alt="" /></a>
-									<p>This part has all information you pertaining your investment numbered {{x.id}}</p>
-									<ul class="actions special">
-										<li><a href="#" class="button">Details</a></li>
-									</ul>
-								</article>
-								{%endfor%}
-							</section>
-					</div>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav m-auto">
+              <li class="nav-item active">
+                  <a class="nav-link" href="{%url 'home' %}">Home <span class="sr-only">(current)</span></a>
+              </li>
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                  <a class="nav-link" href="{%url 'profile' %}">Profile</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{%url 'account_status' %}">E-wallet</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href='{% url "request-loan" %}'>Commodity Loans</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href='{% url "store" %}'>Shop</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="# ">Adashi</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href='{% url "investment_list" %}'>Investments</a>
+              </li>
+              {% endif %}
+          </ul>
+          
+      </div>
+  </nav>
+</header>
+<!-- //site header -->
 
-			
+<!-- banner section -->
+<section id="home" class="banner">
+    <div id="banner-bg-effect" class="banner-effect"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-12 col-sm-12 order-lg-first mt-lg-0 mt-4">
+                <h1 class="mb-4 title">The best platform you have been waiting for.
+                </h1>
+                <p></p>
+                {% if user.is_authenticated %}
+                {% else%} 
+                 <div class="mt-5">
+                    <a class="btn btn-primary btn-style mr-2" href="{% url 'register' %} ">Register </a>
+                    <a class="btn btn-outline btn-outline-style" href="{% url 'login' %}" >Login</a>
+                </div>
+              {% endif %} 
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 order-first text-lg-left text-center">
+                <div>
+          <a href='{% url "home" %}'><img src="{% static 'images/CORPAP3.png' %} " alt="" class="rounded-circle img-fluid"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //banner section -->
 
-				<!-- Copyright -->
-					<div id="copyright">
-						<ul><li>&copy; BAHRAIN</li><li><a href="www.corpad.ng">CONCEPTS LTD</a></li></ul>
-					</div>
 
-			</div>
 
-		<!-- Scripts -->
-			<script src="{% static 'massive/assets/js/jquery.min.js'%}"></script>
-			<script src="{% static 'massive/assets/js/jquery.scrollex.min.js'%}"></script>
-			<script src="{% static 'massive/assets/js/jquery.scrolly.min.js'%}"></script>
-			<script src="{% static 'massive/assets/js/browser.min.js'%}"></script>
-			<script src="{% static 'massive/assets/js/breakpoints.min.js'%}"></script>
-			<script src="{% static 'massive/assets/js/util.js'%}"></script>
-			<script src="{% static 'massive/assets/js/main.js'%}"></script>
+<!-- about page form section -->
+<!-- //home page about -->
 
-	</body>
+<!-- home page service grids -->
+<section id="services" class="bg-light">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8 offset-lg-2 col-md-12 col-sm-12">
+        <h4 class="section-title">CORPAD INVESTMENT PLATFORM </h4>
+        <p class="text-center">This is a comprehensive list of all your investment history.</p>
+      </div>
+    </div>
+    <div class="row mt-lg-5">
+      {% for x in object_list %}
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div class="box-wrap">
+          <div class="icon">
+            <span class="fa fa-clock-o">{{x.date|date}}</span>
+          </div>
+          <h4><a href="#url">Investment no {{x.id}}</a></h4>
+          <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Category</th>
+      <th scope="col">Product</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Dividend</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{x.category}}</td>
+      <td>{{x.product}}</td>
+      <td>{{x.amount_invested}}</td>
+      <td>{{x.dividend}}</td>
+    </tr>
+  </tbody>
+</table>
+          <p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Payments
+  </a>
+  
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+   <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Investment</th>
+      <th scope="col">Dividend</th>
+      <th scope="col">Date</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for x in payments %}
+    <tr>
+      <td>{{x.investment}}</td>
+      <td>{{x.amount_paid}}</td>
+      <td>{{x.date|date}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+  </div>
+</div>
+        </div>
+        
+      </div>
+      {% endfor %}
+      
+    </div>
+  </div>
+</section>
+<!-- //home page service grids -->
+
+<!-- testimonials section -->
+
+
+<!-- stats section -->
+<section id="stats" class="stats">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 margin-md-60">
+                <h2 class="left-title">ADASHI</h2>
+                <p class="white">A group of people team up to contribute a fixed and equal sum of money at specific intervals – daily, weekly, fortnightly, monthly or bi-monthly – enabling each member to collect the entire sum in rotation. When everyone in the group has benefited from the pool, a new rotation cycle is launched.</p>
+            </div>
+            <div class="col-lg-7 mt-lg-0 mt-5">
+                <div class="d-sm-flex justify-content-lg-around justify-content-between counter-main">
+                    <div class="counter">
+                        <div class="icon">
+                            <span class="fa fa-users"></span>
+                        </div>
+                        <p class="value">{% total_users %}</p>
+                        <p class="title white">Active Users</p>
+                    </div>
+                    <div class="counter">
+                        <div class="icon">
+                            <span class="fa fa-headphones"></span>
+                        </div>
+                        <p class="value">{% total_staff %}</p>
+                        <p class="title white">Consultants</p>
+                    </div>
+                    <div class="counter">
+                        <div class="icon">
+                            <span class="fa fa-trophy"></span>
+                        </div>
+                        <p class="value">150</p>
+                        <p class="title white">Awards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //stats section -->
+
+
+
+<!-- site footer -->
+<footer id="site-footer">
+  <div class="top-footer">
+    <div class="container my-md-5 my-4">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="footer-logo mb-3">
+            <a href="{%url 'home' %}">
+              <span class="fa fa-shield"></span> CORPAD 
+            </a>
+          </div>
+          <div>
+            <p class="">Your best patner anytime.</p>
+          </div>
+        </div>
+        <!-- Quick Links -->
+        <div class="col-lg-3 col-md-4 mt-lg-0 mt-5">
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-list">
+            <li><a href="# "> About company</a></li>
+            <li><a href="# "> Explore services</a></li>
+            <li><a href="#"> How It Works?</a></li>
+            
+          </ul>
+        </div>
+        <!-- Newsletter -->
+        <div class="col-lg-5 col-md-8 mt-lg-0 mt-5">
+          <h4 class="footer-title">Newsletter</h4>
+          <p class="mb-4">By subscribing to our mailing list you will always be updated with the latest news from us.
+          </p>
+          <form class="newsletter-form">
+            <input class="input-rounded" type="text" required="" placeholder="Enter Email Address">
+            <button type="submit" title="Subscribe" class="btn btn-primary btn-style" name="submit" value="Submit">
+              Subscribe
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 text-lg-left text-center mb-lg-0 mb-3">
+          <p class="copyright">© 2020 CORPAD . All Rights Reserved. Design by <a
+            href="www.corpad.ng">CORPAD</a></p>
+        </div>
+        <div class="col-lg-4 align-center text-lg-right text-center">
+          <a href="#facebook" class="social-item"><span class="fa fa-facebook-f"></span></a>
+          <a href="#twitter" class="social-item"><span class="fa fa-twitter"></span></a>
+          <a href="#linkedin" class="social-item"><span class="fa fa-linkedin"></span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- //site footer -->
+
+<!-- move top -->
+<button onclick="topFunction()" id="movetop" class="bg-primary" title="Go to top">
+  <span class="fa fa-angle-up"></span>
+</button>
+
+<script>
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function () {
+    scrollFunction()
+  };
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      document.getElementById("movetop").style.display = "block";
+    } else {
+      document.getElementById("movetop").style.display = "none";
+    }
+  }
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+</script>
+<!-- //move top -->
+
+<!-- javascript -->
+<script src="{% static 'assets/js/jquery-3.3.1.min.js' %} "></script>
+
+<!-- libhtbox -->
+<script src="{% static 'assets/js/lightbox-plus-jquery.min.js' %} "></script>
+
+<!-- particles -->
+<script src='{% static "assets/js/particles.min.js" %} '></script>
+<script src="{% static 'assets/js/script.js' %} "></script>
+<!-- //particles -->
+
+<!-- owl carousel -->
+<script src="{% static 'assets/js/owl.carousel.js' %} "></script>
+<script>
+  $(document).ready(function () {
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+      margin: 10,
+      nav: true,
+      loop: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        767: {
+          items: 2
+        },
+        1000: {
+          items: 3
+        }
+      }
+    })
+  })
+</script>
+
+<!-- disable body scroll which navbar is in active -->
+<script>
+  $(function () {
+    $('.navbar-toggler').click(function () {
+      $('body').toggleClass('noscroll');
+    })
+  });
+</script>
+<!-- disable body scroll which navbar is in active -->
+
+<!-- bootstrap -->
+<script src="{% static 'assets/js/bootstrap.min.js' %} "></script>
+
+</body>
 </html>

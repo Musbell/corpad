@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import register,profile, profileUpdate, ProfileList, ProfileDetail, Verify, thanks
+from .views import *
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
@@ -15,5 +15,7 @@ urlpatterns = [
     path('profile/update/', profileUpdate, name="profile_update"),
     # path('profile/update/', ProfileUpdate, name="update"),
     path('verify/', Verify.as_view(), name="verify"),
+    path('message/', Message.as_view(), name="message"),
+    path('message-sent/', message_sent, name="message-sent"),
     path('thanks/', thanks, name="thanks")
 ]

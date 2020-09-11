@@ -12,7 +12,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 # Create your views here.
 
-
 def register(request):
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -63,8 +62,17 @@ class Verify(LoginRequiredMixin,CreateView):
         form.instance.user = self.request.user
         return super().form_valid(form)
 
+class Message(LoginRequiredMixin,CreateView):
+    model = Contact
+    form_class = ContactForm
+    template_name='registration/new_message.html'
+    success_url = reverse_lazy('message-sent')
+
 def thanks(request):
     return render(request, 'registration/verify_done.html')
+
+def message_sent(request):
+    return render(request, 'registration/message_sent.html')
     
 class ProfileList(ListView):
     model   =   User

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/spin.css'%}">
+
+	<title>Document</title>
+</head>
+<body>
+	<script src="https://www.unpkg.com/vue/dist/vue.js"></script>
+<span id="app">
+  <span style="color: white;">Total Members: {{ prizeNumber }}</span>
+  <button type="button" @click="!rolling && prizeNumber < 15 && (prizeNumber++)" :disabled="rolling || prizeNumber === 15">Add</button>
+  <button type="button" @click="!rolling && prizeNumber > 2 && (prizeNumber--)" :disabled="rolling || prizeNumber === 2">Remove</button>
+   <div class="wheel-wrapper">
+    <div
+      class="wheel-pointer"
+      @click="onClickRotate"
+    >
+      Spin
+    </div>
+    <div
+      class="wheel-bg"
+      :class="{freeze: freeze}"
+      :style="`transform: rotate(${wheelDeg}deg)`"
+    >
+      <div class="prize-list">
+        <div
+          class="prize-item-wrapper"
+          v-for="(item,index) in prizeList"
+          :key="index"
+        >
+          <div
+            class="prize-item"
+            :style="`transform: rotate(${(360/ prizeList.length) * index}deg)`"
+          >
+            <div class="prize-name">
+              {{ item.name }}
+            </div>
+            <div class="prize-icon">
+              <img :src="item.icon">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="{% static 'js/spin.js'%}"></script>
+</body>
+</html>

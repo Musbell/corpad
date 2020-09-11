@@ -49,13 +49,16 @@
                   <a class="nav-link" href='{% url "store" %}'>Shop</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="# ">Savings</a>
+                  <a class="nav-link" href='{% url "adashi" %}'>Adashi</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                  <a class="nav-link" href="{% url 'schema' %}">Investing Options</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href='{% url "investment_list" %}'>Investments</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'logout' %}">Logout</a>
               </li>
               {% endif %}
           </ul>

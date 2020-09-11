@@ -58,7 +58,12 @@ class InvestmentList(ListView):
 	model =Investment
 	template_name ='investors/investment_list.html'
 	
-	
+	def get_context_data(self, **kwargs):
+		context = super(ListView, self).get_context_data(**kwargs)
+		context.update({
+            'payments': Payment.objects.all(),})
+		return context
+
 	def get_queryset(self): #investor will only see his investments not anyone else's 
 		queryset =Investment.objects.all()
 		user =self.request.user
@@ -68,3 +73,8 @@ class InvestmentList(ListView):
 			    user=self.request.user 
 			)
 		return queryset 
+
+
+class SchemaList(ListView):
+	model =Schema
+	template_name ='investors/schema_list.html'
