@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '(g1p_o+yy(h75an8_3nr@2!a+#n-&@#y6wmwa3j86iv6+9@ha%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -143,10 +143,10 @@ AUTH_USER_MODEL='accounts.User'
 
 STATIC_URL = '/static/'
 
-# if DEBUG:
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-# else:
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG:
+    STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
