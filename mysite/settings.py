@@ -97,7 +97,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'corpad',
             'USER': 'admin',
-            'PASSWORD': '33992433',
+            'PASSWORD': 'password',
             'HOST':'localhost',
             'PORT': '',
         }
