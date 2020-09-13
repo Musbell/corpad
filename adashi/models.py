@@ -22,3 +22,13 @@ class Category(models.Model):
 	@property
 	def members_name(self):
 		return [x.email for x in self.members]
+
+
+class Join(models.Model):
+	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
+	category=models.ForeignKey(Category, on_delete=models.CASCADE)
+	position=models.IntegerField(default=0)
+	spinned=models.BooleanField(default=False)
+
+	def __str__(self):
+		return self.user.email

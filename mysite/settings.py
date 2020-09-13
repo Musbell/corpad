@@ -44,9 +44,11 @@ INSTALLED_APPS = [
     'loans',
     'investors',
     'adashi',
+    'api',
     #3rd party
     'django_countries',
     'crispy_forms',
+    'rest_framework',
     # 'livereload',
 ]
 
@@ -97,7 +99,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'corpad',
             'USER': 'admin',
-            'PASSWORD': 'password',
+            'PASSWORD': '33992433',
             'HOST':'localhost',
             'PORT': '',
         }
@@ -168,3 +170,12 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+
+# mailgun configs
+
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'postmaster@mg.bottlenose.co'
+# EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
+# EMAIL_USE_TLS = True

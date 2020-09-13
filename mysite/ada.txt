@@ -1,0 +1,62 @@
+fh?a+V24;E]wPk@a
+
+
+
+ssh root@164.90.216.229
+su nick
+cd ~/adashi/
+CREATE DATABASE corpad;
+CREATE USER admin WITH PASSWORD 'password';
+
+ALTER ROLE admin SET client_encoding TO 'utf8';
+
+ALTER ROLE admin SET default_transaction_isolation TO 'read committed';
+
+ALTER ROLE admin SET timezone TO 'UTC';
+
+GRANT ALL PRIVILEGES ON DATABASE corpad TO admin;
+
+sudo certbot --nginx -d corpad.ng -d www.corpad.ng
+
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=nick
+Group=www-data
+WorkingDirectory=/home/nick/adashi
+ExecStart=/home/nick/adashi/env/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/run/gunicorn.sock \
+          mysite.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo nano /etc/nginx/sites-available/adashi
+
+
+server {
+    listen 80;
+    server_name www.corpad.ng corpad.ng 164.90.216.229;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/nick/adashi;
+    }
+
+    location /media/ {
+        root /home/nick/adashi;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/adashi /etc/nginx/sites-enabled
