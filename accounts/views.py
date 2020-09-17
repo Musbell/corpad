@@ -80,3 +80,22 @@ class ProfileList(ListView):
 
 class ProfileDetail(DetailView):
     model   =   User
+
+
+
+from core.models import *
+from investors.models import *
+from loans.models import *
+from adashi.models import *
+
+
+def user_dashboard(request):
+    groups=AdashiGroup.objects.all().filter(members=request.user)
+    investors=Investment.objects.all().filter(user=request.user)
+    loans=Loan.objects.all().filter(customer=request.user)
+    context={
+    'groups':groups,
+    'investors':investors,
+    'loans':loans
+    }
+    return render(request, 'registration/index.html',context)

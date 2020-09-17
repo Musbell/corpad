@@ -3,9 +3,9 @@ from accounts.models import User
 from django.urls import reverse
 # Create your models here.
 
-class Category(models.Model):
+class AdashiGroup(models.Model):
 	name=models.CharField(max_length=200, unique=True)
-	num_of_members=models.IntegerField()
+	num_of_members=models.IntegerField()# this holds the positions available in a group, I think this what you want? 
 	cum_amount=models.IntegerField()
 	contrib_amount=models.IntegerField()
 	num_of_days_per_turn=models.IntegerField()
@@ -26,9 +26,13 @@ class Category(models.Model):
 
 class Join(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
-	category=models.ForeignKey(Category, on_delete=models.CASCADE)
-	position=models.IntegerField(default=0)
-	spinned=models.BooleanField(default=False)
+	category=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
+	spinner_position=models.IntegerField(default=0)#I put it to 0 so that the spinner updates?
+	spinned=models.BooleanField(default=True)
 
 	def __str__(self):
 		return self.user.email
+
+
+
+

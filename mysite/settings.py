@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 SECRET_KEY = '(g1p_o+yy(h75an8_3nr@2!a+#n-&@#y6wmwa3j86iv6+9@ha%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'loans',
     'investors',
     'adashi',
-    'api',
+    # 'api',
     #3rd party
     'django_countries',
     'crispy_forms',
@@ -99,7 +99,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'corpad',
             'USER': 'admin',
-            'PASSWORD': '33992433',
+            'PASSWORD': 'password',
             'HOST':'localhost',
             'PORT': '',
         }

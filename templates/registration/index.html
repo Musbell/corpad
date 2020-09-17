@@ -1,0 +1,428 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% load accounts_tags %}
+    <div class="row">
+      <div class="col-lg-6 col-md-12">
+        <div class="card card-tasks">
+          <div class="card-header ">
+            <h6 class="title d-inline">Tasks(5)</h6>
+            <p class="card-category d-inline">today</p>
+            <div class="dropdown">
+              <button type="button" class="btn btn-link dropdown-toggle btn-icon" data-toggle="dropdown">
+                <i class="tim-icons icon-settings-gear-63"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#pablo">Action</a>
+                <a class="dropdown-item" href="#pablo">Another action</a>
+                <a class="dropdown-item" href="#pablo">Something else</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body ">
+            <div class="table-full-width table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">Update the Documentation</p>
+                      <p class="text-muted">Dwuamish Head, Seattle, WA 8:47 AM</p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="" checked="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">GDPR Compliance</p>
+                      <p class="text-muted">The GDPR is a regulation that requires businesses to protect the personal data and privacy of Europe citizens for transactions that occur within EU member states.</p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">Solve the issues</p>
+                      <p class="text-muted">Fifty percent of all respondents said they would be more likely to shop at a company </p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">Release v2.0.0</p>
+                      <p class="text-muted">Ra Ave SW, Seattle, WA 98116, SUA 11:19 AM</p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">Export the processed files</p>
+                      <p class="text-muted">The report also shows that consumers will not easily forgive a company once a breach exposing their personal data occurs. </p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input class="form-check-input" type="checkbox" value="">
+                          <span class="form-check-sign">
+                            <span class="check"></span>
+                          </span>
+                        </label>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="title">Arival at export process</p>
+                      <p class="text-muted">Capitol Hill, Seattle, WA 12:34 AM</p>
+                    </td>
+                    <td class="td-actions text-right">
+                      <button type="button" rel="tooltip" title="" class="btn btn-link" data-original-title="Edit Task">
+                        <i class="tim-icons icon-pencil"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-lg-6 col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> Users Table <br> Total Users {% total_users %}</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Email
+                    </th>
+                    <th>
+                      Phone
+                    </th>
+                    <th>
+                      Country
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for user in users %}
+                  <tr>
+                    <td>
+                      {{user.first_name}} {{user.last_name}}
+                    </td>
+                    <td>
+                      {{user.email}}
+                    </td>
+                    <td>
+                      {{user.mobile}}
+                    </td>
+                    <td>
+                      {{user.country}}
+                    </td>
+                  </tr>
+                
+                  {% endfor %}
+                    
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="col-lg-6 col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> This is your Adashi history</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Group ID
+                    </th>
+                    <th>
+                      No of Members
+                    </th>
+                    <th>
+                      Total Amount
+                    </th>
+                    <th>
+                      Amount per member
+                    </th>
+                    <th>
+                      Rotation Days
+                    </th>
+                    <th>
+                      End Date
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for group in groups %}
+                  <tr>
+                    
+                    <td>
+                      {{group.name}}
+                    </td>
+                    <td>
+                      {{group.group_id}}
+                    </td>
+                    <td>
+                      {{group.num_of_members}}
+                    </td>
+                    <td>
+                      {{group.cum_amount}}
+                    </td>
+                    <td>
+                      {{group.contrib_amount}}
+                    </td>
+                    <td>
+                      {{group.num_of_days_per_turn}}
+                    </td>
+                    <td>
+                      {{group.end_date|date}}
+                    </td>
+                  </tr>
+                  {% endfor%}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6 col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> This is your investment history</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>
+                      Investor
+                    </th>
+                    <th>
+                      Date
+                    </th>
+                    <th>
+                      Product Category
+                    </th>
+                    <th>
+                      Product
+                    </th>
+                    <th>
+                      Amount
+                    </th>
+                    <th>
+                      Dividend
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for investor in investors %}
+                  <tr>
+                    <td>
+                      {{investor.user.first_name}}  {{investor.user.last_name}}
+                    </td>
+                    <td>
+                       {{investor.date|date}}
+                    </td>
+                    <td>
+                       {{investor.category}}
+                    </td>
+                    <td>
+                       {{investor.product}}
+                    </td>
+                    <td>
+                       ${{investor.amount_invested}}
+                    </td>
+                    <td>
+                       ${{investor.dividend}}
+                    </td>
+                  </tr>
+                  {%endfor%}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6 col-md-12">
+        <div class="card ">
+          <div class="card-header">
+            <h4 class="card-title"> This is your loan history</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table tablesorter " id="">
+                <thead class=" text-primary">
+                  <tr>
+                    <th>
+                      Loanee
+                    </th>
+                    <th>
+                      Phone
+                    </th>
+                    <th>
+                      Address
+                    </th>
+                    <th>
+                      Loan Date
+                    </th>
+                    <th>
+                      Product Category
+                    </th>
+                    <th>
+                    Product Loaned
+                    </th>
+                    <th>
+                      Installments
+                    </th>
+                    <th>
+                      Months
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for loan in loans %}
+                  <tr>
+                    <td>
+                      {{loan.customer.first_name}} {{loan.customer.last_name}}
+                    </td>
+                    <td>
+                      {{loan.phone}}
+                    </td>
+                    <td>
+                      {{loan.address}}
+                    </td>
+                    <td>
+                      {{loan.date|date}}
+                    </td>
+                    <td>
+                      {{loan.category}}
+                    </td>
+                    <td>
+                      {{loan.product}}
+                    </td>
+                    <td>
+                      {{loan.installment}}
+                    </td>
+                    <td>
+                      {{loan.months}}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}

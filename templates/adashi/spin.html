@@ -9,11 +9,22 @@
 	<title>Document</title>
 </head>
 <body>
+  <script>
+         setTimeout(function(){
+            window.location.href = 'https://e53a873fc393.ngrok.io/adashi/join/group';
+         }, 15000);
+      </script>
+  <!-- <script>
+    function pageRedirect() {
+      window.location.href = "https://www.corpad.ng/";
+    }      
+</script> --> 
 	<script src="https://www.unpkg.com/vue/dist/vue.js"></script>
 <span id="app">
   <span style="color: white;">Total Members: {{ prizeNumber }}</span>
   <button type="button" @click="!rolling && prizeNumber < 15 && (prizeNumber++)" :disabled="rolling || prizeNumber === 15">Add</button>
   <button type="button" @click="!rolling && prizeNumber > 2 && (prizeNumber--)" :disabled="rolling || prizeNumber === 2">Remove</button>
+  <!-- <button type="button" onclick="pageRedirect()">Redirecting ...</button> -->
    <div class="wheel-wrapper">
     <div
       class="wheel-pointer"
@@ -48,6 +59,7 @@
     </div>
   </div>
 </div>
+ 
 <script src="{% static 'js/spin.js'%}"></script>
 </body>
 </html>

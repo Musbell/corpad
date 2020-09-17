@@ -1,19 +1,25 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400');
 
 body {
+
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */
        -moz-user-select: none; /* Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+                                 supported by Chrome and Opera */
+
+
 }
 
-
+body{
+  background-color:#264d73; 
+}
 .container {
   display: flex;
   justify-content: center;
+   background-color:#264d73; 
 }
 
 .iphone {

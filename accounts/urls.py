@@ -17,5 +17,6 @@ urlpatterns = [
     path('verify/', Verify.as_view(), name="verify"),
     path('message/', Message.as_view(), name="message"),
     path('message-sent/', message_sent, name="message-sent"),
-    path('thanks/', thanks, name="thanks")
+    path('thanks/', thanks, name="thanks"),
+    path('user/dashboard', user_dashboard, name="user-dashboard")
 ]
