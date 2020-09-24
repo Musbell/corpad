@@ -101,3 +101,11 @@ def user_dashboard(request):
     'calendars':calendars
     }
     return render(request, 'registration/index.html',context)
+
+def list_users(request):
+    users= User.objects.all()
+    return render(request, 'registration/user_list.html', {'users':users})
+
+def list_investors(request):
+    users= User.objects.all().filter(is_investor=True)
+    return render(request, 'registration/investor_list.html', {'users':users})

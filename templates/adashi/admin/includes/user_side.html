@@ -29,7 +29,25 @@
           <li class="{% if 'maps' in segment %} active {% endif %}">
             <a href='{% url "investment_list" %}'>
               <i class="tim-icons icon-bank"></i>
-              <p>Investments</p>
+              <p>Investments Platform</p>
+            </a>
+          </li>
+          <li class="{% if 'icons' in segment %} active {% endif %}">
+            <a href='{% url "store" %}'>
+              <i class="tim-icons icon-cart"></i>
+              <p>Our Shop</p>
+            </a>
+          </li>
+          <li class="{% if 'icons' in segment %} active {% endif %}">
+            <a href='{% url "adashi" %}'>
+              <i class="tim-icons icon-molecule-40"></i>
+              <p>Adashi Groups</p>
+            </a>
+          </li>
+          <li class="{% if 'icons' in segment %} active {% endif %}">
+            <a href='{% url "request-loan" %}'>
+              <i class="tim-icons icon-coins"></i>
+              <p>Request Commodity Loan</p>
             </a>
           </li>
           <li class="{% if 'maps' in segment %} active {% endif %}">

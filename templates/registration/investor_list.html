@@ -1,0 +1,67 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} UI Tables {% endblock %} 
+{% load accounts_tags %} 
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card  card-plain">
+      <div class="card-header">
+        <h4 class="card-title"> This is a list of all investors in CORPAD</h4>
+        <p class="category"> The current record is {% total_investors %} investors.</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                
+                <th>
+                  First Name
+                </th>
+                <th>
+                  Last Name
+                </th>
+                <th>
+                  Mobile
+                </th>
+                <th>
+                  Email
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+              <tr>
+                
+                <td>
+                  {{user.first_name}}
+                </td>
+                <td>
+                  {{user.last_name}}
+                </td>
+                <td>
+                  {{user.mobile}}
+                </td>
+                <td>
+                 {{user.email}}
+                </td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

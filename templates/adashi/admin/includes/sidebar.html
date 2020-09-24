@@ -15,31 +15,31 @@
         <ul class="nav">
         {% if user.is_authenticated %}
           <li class="{% if 'index' in segment %} active {% endif %}">
-            <a href="/">
+            <a href="/admin/adashi/adashigroup/add/">
               <i class="tim-icons icon-simple-add"></i>
               <p>Create Adashi Group</p>
             </a>
           </li>
           <li class="{% if 'icons' in segment %} active {% endif %}">
-            <a href="/ui-icons.html">
+            <a href="/admin/accounts/user/add/">
               <i class="tim-icons icon-simple-add"></i>
               <p>Create User</p>
             </a>
           </li>
           <li class="{% if 'maps' in segment %} active {% endif %}">
-            <a href="/ui-maps.html">
+            <a href="/admin/loans/product/add/">
               <i class="tim-icons icon-simple-add"></i>
               <p>Create Shop Post</p>
             </a>
           </li>
           <li class="{% if 'notifications' in segment %} active {% endif %}">
-            <a href="/ui-notifications.html">
+            <a href="/admin/loans/product/add/">
               <i class="tim-icons icon-simple-add"></i>
               <p>Create Commodity</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="/admin/investors/schema/add/">
               <i class="tim-icons icon-simple-add"></i>
               <p>Create Investment Options</p>
             </a>
@@ -63,43 +63,43 @@
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="#">
               <i class="tim-icons icon-bell-55"></i>
               <p>Notifications</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="#">
               <i class="tim-icons icon-alert-circle-exc"></i>
               <p>Send Announcement</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="#">
               <i class="tim-icons icon-wallet-43"></i>
               <p>Wallet Transactions</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href='{% url "pay" %}'>
               <i class="tim-icons icon-bank"></i>
               <p>Make Investor's Payment</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="/admin/adashi/adashigroup/">
               <i class="tim-icons icon-notes"></i>
               <p>Approve Adashi Join Request</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="/admin/loans/loan/">
               <i class="tim-icons icon-paper"></i>
               <p>View Loan Applications</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href="/admin/loans/loan/">
               <i class="tim-icons icon-pencil"></i>
               <p>Approve Loans</p>
             </a>
