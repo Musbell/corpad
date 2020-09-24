@@ -53,3 +53,13 @@ class JoinView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
     	form.instance.user = self.request.user
     	return super().form_valid(form)
+
+
+class PayView(LoginRequiredMixin, CreateView):
+    template_name = 'adashi/pay.html'
+    form_class = PaymentForm
+    success_url = reverse_lazy('thanks')
+
+    # def form_valid(self, form):
+    # 	form.instance.user = self.request.user
+    # 	return super().form_valid(form)

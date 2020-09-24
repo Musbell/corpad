@@ -4,10 +4,10 @@
       <div class="sidebar-wrapper">
         
         <div class="logo">
-          <a target="_blank" href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-mini">
+          <a target="_blank" href="https://corpad.ng" class="simple-text logo-mini">
           CORPAD
           </a>
-          <a target="_blank" href="https://appseed.us/admin-dashboards/django-dashboard-black" class="simple-text logo-normal">
+          <a target="_blank" href="https://corpad.ng" class="simple-text logo-normal">
             User Dashboard
           </a>
         </div>
@@ -15,21 +15,27 @@
         <ul class="nav">
         {% if user.is_authenticated %}
           <li class="{% if 'index' in segment %} active {% endif %}">
-            <a href="/">
-              <i class="tim-icons icon-chart-pie-36"></i>
+            <a href='{% url "profile" %}'>
+              <i class="tim-icons icon-single-02"></i>
               <p>Profile</p>
             </a>
           </li>
           <li class="{% if 'icons' in segment %} active {% endif %}">
-            <a href="/ui-icons.html">
-              <i class="tim-icons icon-atom"></i>
+            <a href='{% url "account_status" %}'>
+              <i class="tim-icons icon-wallet-43"></i>
               <p>E-wallet</p>
             </a>
           </li>
           <li class="{% if 'maps' in segment %} active {% endif %}">
-            <a href="/ui-maps.html">
-              <i class="tim-icons icon-pin"></i>
+            <a href='{% url "investment_list" %}'>
+              <i class="tim-icons icon-bank"></i>
               <p>Investments</p>
+            </a>
+          </li>
+          <li class="{% if 'maps' in segment %} active {% endif %}">
+            <a href='{% url "pay" %}'>
+              <i class="tim-icons icon-bank"></i>
+              <p>Make Payment</p>
             </a>
           </li>
           
@@ -42,7 +48,7 @@
           {% else %}
           <li class="">
             <a target="_blank" 
-               href="https://appseed.us/admin-dashboards/django-dashboard-black-pro">
+               href='{% url "login" %}'>
               <i class="tim-icons icon-spaceship"></i>
               <p>Login</p>
             </a>

@@ -34,5 +34,23 @@ class Join(models.Model):
 		return self.user.email
 
 
+class Calendar(models.Model):
+	category=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
+	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='calendars')
+	date=models.DateTimeField(auto_now_add=True)
+	d_date=models.DateTimeField(null=True,blank=True)
+
+	def __str__(self):
+		return self.user.email
+
+class Payment(models.Model):
+	email=models.EmailField()
+	amount=models.IntegerField()
+	first_name=models.CharField(max_length=20)
+	last_name=models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.email
+
 
 

@@ -32,3 +32,5 @@ class VerificationForm(forms.ModelForm):
     class Meta:
         model   =   Verification
         fields  =   ['national_Id', 'front_Id','back_Id', 'proof']
+
+

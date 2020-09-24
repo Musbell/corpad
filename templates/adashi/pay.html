@@ -1,0 +1,81 @@
+{%extends 'registration/auth_base.html' %}
+{%block content%}
+    <div class="form-body">
+        <div class="website-logo">
+            <a href="index.html">
+                <div class="logo">
+                    <img class="logo-size" src="images/logo-light.svg" alt="">
+                </div>
+            </a>
+        </div>
+        <div class="row">
+            <div class="img-holder">
+                <div class="bg"></div>
+                <div class="info-holder">
+
+                </div>
+            </div>
+            <div class="form-holder">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Payments Page</h3>
+                        <p>Fill In the form to initiate a transaction..</p>
+                        <div class="page-links">
+                            <a href="{% url 'home' %}" class="active">Home</a><a href="{% url 'user-dashboard' %}">My Dashboard</a>
+                        </div>
+
+                        <form id="paymentForm" action="" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" id="email-address" value="{{request.user.email}}" required />
+  </div>
+  <div class="form-group">
+    <label for="amount">Amount</label>
+    <input type="tel" id="amount" required />
+  </div>
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input type="text" id="first-name"  value="{{request.user.first_name}}"/>
+  </div>
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input type="text" id="last-name" value="{{request.user.last_name}}" />
+  </div>
+                            <div class="form-button">
+                                <button id="submit" type="submit" class="ibtn"  onclick="payWithPaystack()">Make Payment</button>
+                            </div>
+                        </form>
+                        <script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+    
+const paymentForm = document.getElementById('paymentForm');
+paymentForm.addEventListener("submit", payWithPaystack, false);
+function payWithPaystack(e) {
+  e.preventDefault();
+  let handler = PaystackPop.setup({
+    key: 'pk_test_bbde5630d4e96293b609486583a2d1816cf5bbb4', // Replace with your public key
+    email: document.getElementById("email-address").value,
+    amount: document.getElementById("amount").value * 100,
+    firstname: document.getElementById("first-name").value,
+    lastname: document.getElementById("last-name").value,
+    // ref: ''+Math.floor((Math.random() * 1000000000) + 1), // generates a pseudo-unique reference. Please replace with a reference you generated. Or remove the line entirely so our API will generate one for you
+    // label: "Optional string that replaces customer email"
+    onClose: function(){
+      alert('Transaction was not completed, window closed.');
+    },
+    callback: function(response){
+      let message = 'Payment complete! Reference: ' + response.reference;
+      alert(message);
+      window.location = "https://www.corpad.ng";
+    }
+  });
+  handler.openIframe();
+}
+</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}

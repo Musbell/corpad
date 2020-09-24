@@ -4,3 +4,5 @@ from .models import *
 
 admin.site.register(AdashiGroup)
 admin.site.register(Join)
+admin.site.register(Calendar)
+admin.site.register(Payment)
