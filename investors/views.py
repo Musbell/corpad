@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from accounts.models import User 
 from accounts.decorators import *
 from  .models import *
+from .forms import *
 # from django_xhtml2pdf.views import PdfMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -78,3 +79,13 @@ class InvestmentList(ListView):
 class SchemaList(ListView):
 	model =Schema
 	template_name ='investors/schema_list.html'
+
+
+class CreateSchema(CreateView):
+	model=Schema
+	form_class=CreateSchemaForm
+	template_name='investors/create_schema.html'
+	success_url=reverse_lazy('adashi-admin')
+
+
+

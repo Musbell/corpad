@@ -9,3 +9,9 @@ class MoneyTransferForm (forms.ModelForm):
             "enter_the_destination_account_number", 
             "enter_the_amount_to_be_transferred_in_USD"
         ]
+
+
+class AnnouncementForm(forms.ModelForm):
+    class Meta:
+        model   =   models.Announcement
+        fields  =   '__all__'

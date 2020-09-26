@@ -1,0 +1,53 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h1>Send Announcement</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+	<br>
+   <div class="form-group">
+    <label for="id_{{ form.title.label }}">{{ form.title.label }}:</label>
+    <input type="{{ form.title.type }}" name="{{ form.title.name }}" max_length="200"  class="form-control" id="id_{{ form.title.id }}"  required>
+  </div>
+ 
+ <div class="form-group">
+    <label for="id_{{ form.body.label }}">{{ form.body.label }}:</label>
+     <textarea type="{{ form.body.type }}" class="form-control" name="{{ form.body.name }}" id="id_{{ form.body.id }}" placeholder="Announcement Message" required rows="3"></textarea>
+   <!--  <input type="{{ form.body.type }}" name="{{ form.body.name }}" class="form-control" id="id_{{ form.body.id }}" required> -->
+  </div>
+
+  <div class="form-group">
+          <label for="id_{{ form.priority.label }}"  >{{form.priority.label}}:</label>
+        <select id="id_{{ form.priority.name }}" name="{{ form.priority.name }}" class="form-control" multiple>
+    {% for value, title in form.priority.field.choices %}
+
+            <option value="{{ value }}">{{ title }}</option>
+
+        {% endfor %}
+
+          </select>
+    </div>
+    <br>
+     <button type="submit" class="btn btn-primary mb-2">Save</button>
+</form>
+
+{% endblock content %}

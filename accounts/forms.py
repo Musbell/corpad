@@ -34,3 +34,4 @@ class VerificationForm(forms.ModelForm):
         fields  =   ['national_Id', 'front_Id','back_Id', 'proof']
 
 
+

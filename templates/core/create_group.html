@@ -1,0 +1,125 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h1>Add New Group</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+	<br>
+   <div class="form-group">
+    <label for="id_{{ form.name.label }}">{{ form.name.label }}:</label>
+    <input type="{{ form.name.type }}" name="{{ form.name.name }}" max_length="200"  class="form-control" id="id_{{ form.name.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.num_of_members.label }}">{{ form.num_of_members.label }}:</label>
+    <input type="{{ form.num_of_members.type }}" name="{{ form.num_of_members.name }}" class="form-control" id="id_{{ form.num_of_members.id }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_{{ form.cum_amount.label }}">{{ form.cum_amount.label }}:</label>
+    <input type="{{ form.cum_amount.type }}" name="{{ form.cum_amount.name }}" class="form-control" id="id_{{ form.cum_amount.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.contrib_amount.label }}">{{ form.contrib_amount.label }}:</label>
+    <input type="{{ form.contrib_amount.type }}" name="{{ form.contrib_amount.name }}" class="form-control" id="id_{{ form.contrib_amount.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.num_of_days_per_turn.label }}">{{ form.num_of_days_per_turn.label }}:</label>
+    <input type="{{ form.num_of_days_per_turn.type }}" name="{{ form.num_of_days_per_turn.name }}" class="form-control" id="id_{{ form.num_of_days_per_turn.id }}" required>
+  </div>
+ 
+ <div class="form-group">
+    <label for="id_{{ form.group_id.label }}">{{ form.group_id.label }}:</label>
+    <input type="{{ form.group_id.type }}" name="{{ form.group_id.name }}" class="form-control" id="id_{{ form.group_id.id }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_{{ form.end_date.label }}">{{ form.end_date.label }}:</label>
+    <input type="{{ form.end_date.type }}" name="{{ form.end_date.name }}" class="form-control" id="id_{{ form.end_date.id }}" placeholder="format: 2020-09-25" required>
+  </div>
+
+  <!-- <div class="form-group">
+    <label for="id_num_of_members">Number of members</label>
+    <input type="number" name="cum_amount" required id="id_cum_amount" class="form-control" >
+  </div>
+  <div class="form-group">
+    <label for="id_members">Members</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div> -->
+  <div class="form-group">
+          <label for="id_{{ form.members.label }}"  >Members</label>
+        <select id="id_{{ form.members.name }}" name="{{ form.members.name }}" class="form-control" multiple>
+    {% for value, title in form.members.field.choices %}
+
+            <option value="{{ value }}">{{ title }}</option>
+
+        {% endfor %}
+
+          </select>
+    </div>
+    <br>
+     <button type="submit" class="btn btn-primary mb-2">Save</button>
+</form>
+
+{% endblock content %}
+<!-- <p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="200" required id="id_name"></p>
+
+<p><label for="id_num_of_members">Num of members:</label> <input type="number" name="num_of_members" required id="id_num_of_members"></p>
+
+<p><label for="id_cum_amount">Cum amount:</label> <input type="number" name="cum_amount" required id="id_cum_amount"></p>
+
+<p><label for="id_contrib_amount">Contrib amount:</label> <input type="number" name="contrib_amount" required id="id_contrib_amount"></p>
+
+<p><label for="id_num_of_days_per_turn">Num of days per turn:</label> <input type="number" name="num_of_days_per_turn" required id="id_num_of_days_per_turn"></p>
+
+<p><label for="id_group_id">Group id:</label> <input type="number" name="group_id" required id="id_group_id"></p>
+
+<p><label for="id_end_date">End date:</label> <input type="text" name="end_date" required id="id_end_date"></p>
+
+<p><label for="id_members">Members:</label> <select name="members" id="id_members" multiple>
+  <option value="1">realnickyadams@gmail.com</option>
+
+  <option value="2">nicksonkiprotich95@gmail.com</option>
+
+  <option value="3">test@gmail.com</option>
+
+  <option value="4">lyn@gmail.com</option>
+
+  <option value="5">baba@gmail.com</option>
+
+  <option value="6">abdulkareem@gmail.com</option>
+
+  <option value="7">musbell007@gmail.com</option>
+
+  <option value="8">demo@gmail.com</option>
+
+  <option value="9">corona@gmail.com</option>
+
+</select></p> -->

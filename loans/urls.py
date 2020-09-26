@@ -12,5 +12,8 @@ urlpatterns = [
 	path('loan-request-submitted/', views.thanks, name="submitted"),
 	path('update_item/', views.updateItem, name="update_item"),
 	path('process_order/', views.processOrder, name="process_order"),
+	path('create/commodity', views.CreateProduct.as_view(), name="create-product"),
+	path('view/applications', views.LoanList, name="loan-list"),
+	path('<int:pk>/approve', views.LoanUpdate.as_view(), name="loan-update"),
 
 ]

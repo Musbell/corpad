@@ -68,6 +68,11 @@ class Message(LoginRequiredMixin,CreateView):
     template_name='registration/new_message.html'
     success_url = reverse_lazy('message-sent')
 
+
+class MessageList(LoginRequiredMixin,ListView):
+    model = Contact
+    template_name='registration/messages.html'
+
 def thanks(request):
     return render(request, 'registration/verify_done.html')
 

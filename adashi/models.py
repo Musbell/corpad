@@ -11,7 +11,7 @@ class AdashiGroup(models.Model):
 	num_of_days_per_turn=models.IntegerField()
 	group_id=models.IntegerField(unique=True)
 	date=models.DateTimeField(auto_now_add=True)
-	end_date=models.DateTimeField()
+	end_date=models.CharField(max_length=10)
 	members=models.ManyToManyField(User, blank=True)
 
 	def __str__(self):

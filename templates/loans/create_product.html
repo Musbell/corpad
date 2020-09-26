@@ -1,0 +1,131 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h1>Add New Commodity</h1>
+<form action="" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+  <br>
+  <div class="form-group">
+          <label for="id_{{ form.category.label }}"  >{{form.category.label}}:</label>
+        <select id="id_{{ form.category.name }}" name="{{ form.category.name }}" class="form-control" multiple="">
+    {% for value, title in form.category.field.choices %}
+
+            <option value="{{ value }}">{{ title }}</option>
+
+        {% endfor %}
+
+          </select>
+    </div>
+   <div class="form-group">
+    <label for="id_{{ form.name.label }}">{{ form.name.label }}:</label>
+    <input type="{{ form.name.type }}" name="{{ form.name.name }}" max_length="200"  class="form-control" id="id_{{ form.name.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.slug.label }}">{{ form.slug.label }}:</label>
+    <input type="{{ form.slug.type }}" name="{{ form.slug.name }}" class="form-control" id="id_{{ form.slug.id }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_{{ form.cash_price.label }}">{{ form.cash_price.label }}:</label>
+    <input type="{{form.cash_price.type}}" name="{{ form.cash_price.name }}" class="form-control" id="id_{{ form.cash_price.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.installment_price.label }}">{{ form.installment_price.label }}:</label>
+    <input type="{{ form.installment_price.type }}" name="{{ form.installment_price.name }}" class="form-control" id="id_{{ form.installment_price.id }}" required>
+  </div>
+
+  <div class="form-group">
+    <label for="id_{{ form.tax.label }}">{{ form.tax.label }}:</label>
+    <input type="{{ form.tax.type }}" name="{{ form.tax.name }}" class="form-control" id="id_{{ form.tax.id }}" required>
+  </div>
+  
+  <div class="form-group">
+    <label for="id_{{ form.period.label }}">{{ form.period.label }}:</label>
+    <input type="{{ form.period.type }}" name="{{ form.period.name }}" class="form-control" id="id_{{ form.period.id }}"  required>
+  </div>
+
+   <p><label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="id_image"></p>
+   <p><label for="id_available">Available:</label> <input type="checkbox" name="available" id="id_available" checked></p>
+   <p><label for="id_digital">Digital:</label> <select name="digital" id="id_digital">
+  <option value="unknown">Unknown</option>
+
+  <option value="true">Yes</option>
+
+  <option value="false" selected>No</option>
+
+</select></p>
+  <!-- <div class="form-group">
+    <label for="id_num_of_members">Number of members</label>
+    <input type="number" name="cum_amount" required id="id_cum_amount" class="form-control" >
+  </div>
+  <div class="form-group">
+    <label for="id_members">Members</label>
+    <select multiple class="form-control" id="exampleFormControlSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div> -->
+  
+    <br>
+     <button type="submit" class="btn btn-primary mb-2">Save</button>
+</form>
+
+{% endblock content %}
+<p><label for="id_category">Category:</label> <select name="category" required id="id_category">
+  <option value="" selected>---------</option>
+
+  <option value="3">Automobile</option>
+
+  <option value="2">Electronics</option>
+
+  <option value="1">Food Stuff</option>
+
+  <option value="6">Furniture</option>
+
+  <option value="4">Home Appliances</option>
+
+  <option value="5">Housing</option>
+
+  <option value="7">Others</option>
+
+</select></p>
+<p><label for="id_name">Name:</label> <input type="text" name="name" maxlength="200" required id="id_name"></p>
+<p><label for="id_slug">Slug:</label> <input type="text" name="slug" maxlength="200" required id="id_slug"></p>
+<p><label for="id_image">Image:</label> <input type="file" name="image" accept="image/*" required id="id_image"></p>
+<p><label for="id_cash_price">Cash price:</label> <input type="number" name="cash_price" step="any" required id="id_cash_price"></p>
+<p><label for="id_installment_price">Installment price:</label> <input type="number" name="installment_price" step="any" required id="id_installment_price"></p>
+<p><label for="id_tax">Tax:</label> <input type="number" name="tax" step="any" id="id_tax"></p>
+<p><label for="id_available">Available:</label> <input type="checkbox" name="available" id="id_available" checked></p>
+<p><label for="id_period">Period:</label> <input type="number" name="period" required id="id_period"></p>
+<p><label for="id_digital">Digital:</label> <select name="digital" id="id_digital">
+  <option value="unknown">Unknown</option>
+
+  <option value="true">Yes</option>
+
+  <option value="false" selected>No</option>
+
+</select></p>

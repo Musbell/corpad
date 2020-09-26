@@ -11,7 +11,20 @@ from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-
+def LoanList(request):
+	x=Loan.objects.all().filter(approved=True)
+	y=Loan.objects.all().filter(approved=False)
+	context={
+	'x':x,
+	'y':y
+	}
+	return render(request, 'loans/loan_list.html', context)
+	
+class LoanUpdate(LoginRequiredMixin,UpdateView):
+	model = Loan
+	form_class = LoanUpdateForm
+	template_name='loans/update_loan.html'
+	success_url = reverse_lazy("loan-list")
 
 class LoanCreate(LoginRequiredMixin,CreateView):
 	model = Loan
@@ -23,7 +36,7 @@ class LoanCreate(LoginRequiredMixin,CreateView):
 		form.instance.customer = self.request.user
 		return super().form_valid(form)
 
-@login_required
+
 def store(request):
 	data = cartData(request)
 
@@ -35,7 +48,7 @@ def store(request):
 	context = {'products':products, 'cartItems':cartItems}
 	return render(request, 'loans/list.html', context)
 
-@login_required
+
 def cart(request):
 	data = cartData(request)
 
@@ -46,7 +59,7 @@ def cart(request):
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'loans/cart.html', context)
 
-@login_required
+
 def checkout(request):
 	data = cartData(request)
 	
@@ -57,7 +70,7 @@ def checkout(request):
 	context = {'items':items, 'order':order, 'cartItems':cartItems}
 	return render(request, 'loans/checkout.html', context)
 
-@login_required
+
 def updateItem(request):
 	data = json.loads(request.body)
 	productId = data['productId']
@@ -83,7 +96,7 @@ def updateItem(request):
 
 	return JsonResponse('Item was added', safe=False)
 
-@login_required
+
 def processOrder(request):
 	transaction_id = datetime.datetime.now().timestamp()
 	data = json.loads(request.body)
@@ -113,6 +126,13 @@ def processOrder(request):
 
 	return JsonResponse('Payment submitted..', safe=False)
 
-@login_required
+
 def thanks(request):
 	return render(request, 'loans/thanks.html')
+
+
+class CreateProduct(CreateView):
+	model=Product
+	form_class=CreateProductForm
+	template_name='loans/create_product.html'
+	success_url=reverse_lazy('adashi-admin')

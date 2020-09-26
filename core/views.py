@@ -4,9 +4,10 @@ from . import models
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
-from .models import Status 
+from .models import *
 import random
-from django.views.generic import TemplateView 
+from django.views.generic import *
+from django.urls import *
 from django.contrib.auth.decorators import login_required
 
 class HomePageView(TemplateView):
@@ -93,3 +94,10 @@ def topup(request):
 def loan(request):
     return render(request, "profiles/loans.html")
 
+
+
+class Announcement(CreateView):
+    model = Announcement
+    form_class = forms.AnnouncementForm
+    template_name='registration/new_announcement.html'
+    success_url = reverse_lazy('adashi-admin')
