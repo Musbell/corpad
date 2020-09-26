@@ -45,13 +45,13 @@
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href='{% url "users_list" %}'>
               <i class="tim-icons icon-single-02"></i>
               <p>List of users</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/page-user.html">
+            <a href='{% url "investors_list" %}'>
               <i class="tim-icons icon-single-02"></i>
               <p>List of investors</p>
             </a>
