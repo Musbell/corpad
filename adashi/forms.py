@@ -58,3 +58,10 @@ class CreateGroupForm(forms.ModelForm):
 	class Meta:
 		model   =   AdashiGroup
 		fields  =   '__all__'
+
+
+
+class JoinUpdateForm(forms.ModelForm):
+    class Meta:
+        model   =   Join
+        fields  =   ['approved',]

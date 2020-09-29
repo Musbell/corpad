@@ -10,4 +10,6 @@ urlpatterns = [
     path('admin', views.adashi_admin, name='adashi-admin'),
     path('make/payments', views.PayView.as_view(), name='pay'),
     path('create/group', views.CreateGroup.as_view(), name='create-group'),
+    path('group/join/requests', views.JoinList, name='join-list'),
+    path('<int:pk>/approve', views.JoinUpdate.as_view(), name="join-update"),
 ]

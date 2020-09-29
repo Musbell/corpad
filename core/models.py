@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from accounts.models import User
 
 class Status (models.Model):
     account_number = models.IntegerField()
@@ -31,3 +32,15 @@ class Announcement(models.Model):
         choices=PRIORITY_CHOICES,
         default='Low',
     )
+
+
+class Notification(models.Model):
+    target=models.ForeignKey(User, on_delete=models.CASCADE)
+    title=models.CharField(max_length=20)
+    body=models.TextField()
+    date=models.DateTimeField(auto_now_add=True)
+    # priority = models.CharField(
+    #     max_length=50,
+    #     choices=PRIORITY_CHOICES,
+    #     default='Low',
+    # )

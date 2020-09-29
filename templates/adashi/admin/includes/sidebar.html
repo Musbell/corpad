@@ -63,9 +63,9 @@
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href='{% url "create-announcement" %}'>
+            <a href='{% url "create-notification" %}'>
               <i class="tim-icons icon-bell-55"></i>
-              <p>Notifications</p>
+              <p>Send Notifications</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
@@ -87,9 +87,9 @@
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">
-            <a href="/admin/adashi/adashigroup/">
+            <a href='{% url "join-list" %}'>
               <i class="tim-icons icon-notes"></i>
-              <p>Approve Adashi Join Request</p>
+              <p>Approve Adashi Join Requests</p>
             </a>
           </li>
           <li class="{% if 'page-user' in segment %} active {% endif %}">

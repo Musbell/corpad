@@ -27,8 +27,7 @@ class AdashiGroup(models.Model):
 class Join(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
 	category=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
-	spinner_position=models.IntegerField(default=0)#I put it to 0 so that the spinner updates?
-	spinned=models.BooleanField(default=True)
+	approved=models.BooleanField(default=False)
 
 	def __str__(self):
 		return self.user.email

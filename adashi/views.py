@@ -69,3 +69,21 @@ class CreateGroup(CreateView):
 	form_class=CreateGroupForm
 	template_name='core/create_group.html'
 	success_url=reverse_lazy('adashi-admin')
+
+
+def JoinList(request):
+	x=Join.objects.all().filter(approved=True)
+	y=Join.objects.all().filter(approved=False)
+	context={
+	'x':x,
+
+	'y':y
+	}
+	return render(request, 'adashi/join_list.html', context)
+	
+
+class JoinUpdate(LoginRequiredMixin,UpdateView):
+	model = Join
+	form_class = JoinUpdateForm
+	template_name='adashi/update_join.html'
+	success_url = reverse_lazy("join-list")

@@ -15,3 +15,9 @@ class AnnouncementForm(forms.ModelForm):
     class Meta:
         model   =   models.Announcement
         fields  =   '__all__'
+
+
+class NotificationForm(forms.ModelForm):
+    class Meta:
+        model   =   models.Notification
+        fields  =   '__all__'

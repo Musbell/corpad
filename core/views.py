@@ -101,3 +101,10 @@ class Announcement(CreateView):
     form_class = forms.AnnouncementForm
     template_name='registration/new_announcement.html'
     success_url = reverse_lazy('adashi-admin')
+
+
+class Notification(CreateView):
+    model = Notification
+    form_class = forms.NotificationForm
+    template_name='registration/new_notification.html'
+    success_url = reverse_lazy('adashi-admin')

@@ -4,13 +4,13 @@ from accounts.models import User
 # Create your models here.
 
 
-# class Customer(models.Model):
-#     user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
-#     name = models.CharField(max_length=200, null=True)
-#     email = models.CharField(max_length=200)
+class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200)
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length=200,
@@ -70,7 +70,7 @@ class Loan(models.Model):
     installment=models.IntegerField()
     months=models.IntegerField()
     address=models.CharField(max_length=20)
-    phone=models.IntegerField()
+    phone=models.CharField(max_length=20)
     date = models.DateTimeField(auto_now_add=True)
     approved=models.BooleanField(default=False)
 
