@@ -96,15 +96,36 @@ def loan(request):
 
 
 
-class Announcement(CreateView):
+class CreateAnnouncement(CreateView):
     model = Announcement
     form_class = forms.AnnouncementForm
     template_name='registration/new_announcement.html'
     success_url = reverse_lazy('adashi-admin')
 
 
-class Notification(CreateView):
+class CreateNotification(CreateView):
     model = Notification
     form_class = forms.NotificationForm
     template_name='registration/new_notification.html'
     success_url = reverse_lazy('adashi-admin')
+
+def announcements(request):
+    x=Announcement.objects.all().filter(priority='High')
+    y=Announcement.objects.all().filter(priority='Medium')
+    z=Announcement.objects.all().filter(priority='Low')
+    notifications=Notification.objects.all().filter(target=request.user)
+    context={
+    'x':x,
+    'y':y,
+    'z':z,
+    'notifications':notifications
+    }
+    return render(request, 'registration/announcements.html', context)
+
+
+def notifications(request):
+    Notifications=Notification.objects.all().filter(target=request.user)
+    context={
+    'Notifications':Notifications
+    }
+    return render(request, '', context)

@@ -56,7 +56,12 @@
               <p>Make Payment</p>
             </a>
           </li>
-          
+          <li class="{% if 'maps' in segment %} active {% endif %}">
+            <a href='{% url "announcements" %}'>
+              <i class="tim-icons icon-bank"></i>
+              <p>Announcements</p>
+            </a>
+          </li>
           <li>
             <a href="{% url 'logout' %}" >
               <i class="tim-icons icon-user-run"></i>
