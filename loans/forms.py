@@ -29,7 +29,7 @@ class CreateProductForm(forms.ModelForm):
 
 
 class LoanForm(forms.ModelForm):
-    commodity = forms.CharField(label='Commodity Name',widget=forms.TextInput(attrs={'placeholder': 'Which commodity do you want to loan?'}))
+    # commodity = forms.CharField(label='Commodity Name',widget=forms.TextInput(attrs={'placeholder': 'Which commodity do you want to loan?'}))
     installment = forms.CharField(label='Monthy Installment',widget=forms.TextInput(attrs={'placeholder': 'How much would you like to pay monthly?'}))
     months = forms.CharField(label='Total Months', widget=forms.TextInput(attrs={'placeholder': 'How long will it take you to clear the loan?'}))
     address = forms.CharField(label='Pickup Location', widget=forms.TextInput(attrs={'placeholder': 'Where are you located? Indicate a pickup location. '}))

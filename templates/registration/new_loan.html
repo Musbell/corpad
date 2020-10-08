@@ -1,41 +1,62 @@
-{%extends 'registration/auth_base.html' %}
-{%block content%}
-    <div class="form-body">
-        <div class="website-logo">
-            <a href="index.html">
-                <div class="logo">
-                    <img class="logo-size" src="images/logo-light.svg" alt="">
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <div class="img-holder">
-                <div class="bg"></div>
-                <div class="info-holder">
+{% extends "adashi/admin/layouts/base2.html" %}
 
-                </div>
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h3>We Provide Commodity Loans</h3>
+<p>Fill the form below in order for us to process your loan request.</p>
+<form action="" method="POST">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
             </div>
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <h3>We Provide Commodity Loans</h3>
-                        <p>Fill the form below in order for us to process your loan request.</p>
-                        <div class="page-links">
-                            <a href="{% url 'home' %}" class="active">Home</a><a href="#">Adashi</a>
-                        </div>
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            {{form}}
-                            <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Request</button>
-                            </div>
-                        </form>
-                        <!-- <div class="other-links">
-                            <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
         </div>
-    </div>
-{%endblock%}
+    {% endfor %}
+{% endif %}
+    <br>
+    <div class="form-group">
+        <label for="id_{{ form.commodity.label }}"  >{{form.commodity.label}}:</label>
+      <select id="id_{{ form.commodity.name }}" name="{{ form.commodity.name }}" class="form-control" multiple>
+  {% for value, title in form.commodity.field.choices %}
+
+          <option value="{{ value }}">{{ title }}</option>
+
+      {% endfor %}
+
+        </select>
+  </div>
+   <div class="form-group">
+    <label for="id_{{ form.installment.label }}">{{ form.installment.label }}:</label>
+    <input type="{{ form.installment.type }}" name="{{ form.installment.name }}" max_length="200"  class="form-control" id="id_{{ form.installment.id }}" placeholder="How much would you like to pay monthly?" required>
+  </div>
+
+<div class="form-group">
+    <label for="id_{{ form.months.label }}">{{ form.months.label }}:</label>
+    <input type="{{ form.months.type }}" name="{{ form.months.name }}" max_length="200"  class="form-control" id="id_{{ form.months.id }}" placeholder="How long will it take you to clear the loan?" required>
+  </div>
+
+<div class="form-group">
+    <label for="id_{{ form.address.label }}">{{ form.address.label }}:</label>
+    <input type="{{ form.address.type }}" name="{{ form.address.name }}" max_length="200"  class="form-control" id="id_{{ form.address.id }}" placeholder="Where are you located? Indicate a pickup location."  required>
+  </div>
+  
+<div class="form-group">
+    <label for="id_{{ form.phone.label }}">{{ form.phone.label }}:</label>
+    <input type="{{ form.phone.type }}" name="{{ form.phone.name }}" max_length="200"  class="form-control" id="id_{{ form.phone.id }}" placeholder="How can we contact you?" required>
+  </div>
+    <br>
+     <button type="submit" class="btn btn-primary mb-2">Request</button>
+</form>
+
+{% endblock content %}

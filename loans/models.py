@@ -65,8 +65,8 @@ class Product(models.Model):
 
 class Loan(models.Model):
     customer=models.ForeignKey(User, on_delete=models.CASCADE)
-    category=models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    commodity=models.CharField(max_length=300)
+    # category=models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    commodity=models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
     installment=models.IntegerField()
     months=models.IntegerField()
     address=models.CharField(max_length=20)

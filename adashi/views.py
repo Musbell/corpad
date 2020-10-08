@@ -29,16 +29,16 @@ def adashi_admin(request):
 
 
 def GroupList(request):
-	categories=Category.objects.all()
+	categories=AdashiGroup.objects.all()
 	return render(request, 'adashi/adashi.html', {'categories':categories})
 
 
 class GroupDetail(DetailView):
-	model=Category
+	model=AdashiGroup
 	template_name='adashi/detail.html'
 
 class GroupUpdate(UpdateView):
-	model=Category
+	model=AdashiGroup
 	form_class = JoinForm
 	template_name='adashi/update.html'
 

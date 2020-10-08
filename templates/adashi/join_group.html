@@ -1,39 +1,53 @@
-{%extends 'registration/auth_base.html' %}
-{%block content%}
-    <div class="form-body">
-        <div class="website-logo">
-            <a href="index.html">
-                <div class="logo">
-                    <img class="logo-size" src="images/logo-light.svg" alt="">
-                </div>
-            </a>
-        </div>
-        <div class="row">
-            <div class="img-holder">
-                <div class="bg"></div>
-                <div class="info-holder">
+{% extends "adashi/admin/layouts/base2.html" %}
 
-                </div>
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h1>Join Group</h1>
+<form action="" method="POST">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
             </div>
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                        <h3>Join Adashi Group Of Your Choice.</h3>
-                        <p>Submit relevant data.</p>
-                        
-                        <form action="" method="POST">
-                            {% csrf_token %}
-                            {{form}}
-                            <div class="form-button">
-                                <button id="submit" type="submit" class="ibtn">Join Group</button>
-                            </div>
-                        </form>
-                        <!-- <div class="other-links">
-                            <span>Or register with</span><a href="#">Facebook</a><a href="#">Google</a><a href="#">Linkedin</a>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
         </div>
+    {% endfor %}
+{% endif %}
+	<br>
+   <!-- <div class="form-group">
+    <label for="id_{{ form.title.label }}">{{ form.title.label }}:</label>
+    <input type="{{ form.title.type }}" name="{{ form.title.name }}" max_length="200"  class="form-control" id="id_{{ form.title.id }}"  required>
+  </div>
+ 
+ <div class="form-group">
+    <label for="id_{{ form.body.label }}">{{ form.body.label }}:</label>
+     <textarea type="{{ form.body.type }}" class="form-control" name="{{ form.body.name }}" id="id_{{ form.body.id }}" placeholder="The Message" required rows="3"></textarea>
+  
+  </div> -->
+
+  <div class="form-group">
+          <label for="id_{{ form.category.label }}"  >{{form.category.label}}:</label>
+        <select id="id_{{ form.category.name }}" name="{{ form.category.name }}" class="form-control" multiple>
+    {% for value, title in form.category.field.choices %}
+
+            <option value="{{ value }}">{{ title }}</option>
+
+        {% endfor %}
+
+          </select>
     </div>
-{%endblock%}
+    <br>
+     <button type="submit" class="btn btn-primary mb-2">Save</button>
+</form>
+
+{% endblock content %}
