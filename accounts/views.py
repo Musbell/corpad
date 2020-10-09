@@ -97,13 +97,13 @@ from adashi.models import *
 def user_dashboard(request):
     groups=AdashiGroup.objects.all().filter(members=request.user)
     investors=Investment.objects.all().filter(user=request.user)
-    # loans=Loan.objects.all().filter(customer=request.user)
+    loans=Loan.objects.all().filter(customer=request.user)
     calendars=Calendar.objects.all().filter(user=request.user)
     notifications=Notification.objects.all().filter(target=request.user)
     context={
     'groups':groups,
     'investors':investors,
-    # 'loans':loans,
+    'loans':loans,
     'calendars':calendars,
     'notifications':notifications
     }

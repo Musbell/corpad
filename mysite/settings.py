@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'corpad',
+        'NAME': 'adashidb',
         'USER': 'admin',
         'PASSWORD': 'password',
         'HOST': 'localhost',

@@ -47,7 +47,7 @@ class User(AbstractBaseUser):
     # bio         =   models.TextField(max_length=2000, blank=True, null=True)
     profile_pic =   models.ImageField(default='default/blank.png',
                         upload_to="users/%Y/%m/%d", blank=True, null=True)
-    mobile      =   models.PositiveIntegerField(null=True, blank=True, unique=True)
+    mobile      =   models.CharField(max_length=20, blank=True, null=True)
     country     =   CountryField()
     is_admin    =   models.BooleanField(default=False)
     is_active   =   models.BooleanField(default=True) 

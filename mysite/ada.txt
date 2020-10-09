@@ -15,16 +15,17 @@ sudo systemctl restart gunicorn
 
 sudo systemctl restart nginx
 
-CREATE DATABASE corpad;
-CREATE USER admin WITH PASSWORD 'password';
+CREATE DATABASE adashidb;
 
-ALTER ROLE admin SET client_encoding TO 'utf8';
+ CREATE USER adashiadmin WITH PASSWORD 'password';
 
-ALTER ROLE admin SET default_transaction_isolation TO 'read committed';
+ ALTER ROLE adashiadmin SET client_encoding TO 'utf8';
 
-ALTER ROLE admin SET timezone TO 'UTC';
+  ALTER ROLE adashiadmin SET default_transaction_isolation TO 'read committed';
 
-GRANT ALL PRIVILEGES ON DATABASE corpad TO admin;
+  ALTER ROLE adashiadmin SET timezone TO 'UTC';
+
+  GRANT ALL PRIVILEGES ON DATABASE adashidb TO adashiadmin;
 
 sudo certbot --nginx -d corpad.ng -d www.corpad.ng
 
