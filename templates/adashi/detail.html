@@ -13,6 +13,7 @@
               <div class="card">
                 <div class="card-header card-header-primary">
                   <h4 class="card-title ">{{category.name}}</h4>
+                  <p>{{category.contrib_amount}}</p>
                   <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                 </div>
                 <div class="card-body">
@@ -36,7 +37,7 @@
                         </th>
                       </thead>
                       <tbody>
-                        {% for member in category.members.all %}
+                        {% for member in category.members.all%}
                         <tr>
                           <td>
                             {{member.first_name}}
@@ -71,4 +72,8 @@
           </div>
         </div>
       </div>
+      <br>
+      <br>
+      <br>
+      
 {% endblock%}

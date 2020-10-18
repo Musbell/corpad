@@ -1,0 +1,89 @@
+{% extends "adashi/admin/layouts/base2.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>
+    .txn-history {
+	text-align: left;
+}
+
+.txn-list {
+	background-color: #fff;
+	padding: 12px 10px; 
+	color: #777;
+	font-size: 14px;
+	margin: 7px 0;
+}
+
+.debit-amount {
+	color: red;
+	float: right;
+}
+
+.credit-amount {
+	color: green;
+	float: right;
+
+}
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="wallet-container text-center">
+    <h1>My E-Wallet</h1>
+
+    <div class="amount-box text-center">
+        <img src="https://lh3.googleusercontent.com/ohLHGNvMvQjOcmRpL4rjS3YQlcpO0D_80jJpJ-QA7-fQln9p3n7BAnqu3mxQ6kI4Sw" style="width: 250px;" alt="wallet">
+        <p>Total Balance</p>
+        <p class="amount">  &#8358; {{ curr_user.balance }}</p>
+        <br>
+        <p>Account Number</p>
+         <strong> {{ curr_user.account_number }}</strong>
+       
+    </div>
+    <br><br>
+
+    <div class="btn-group text-center">
+        <button type="button" class="btn btn-outline-light"><a style="color: inherit;" href='{% url "add-money" %}'>Add Money</a></button>
+        <button type="button" class="btn btn-outline-light"><a style="color: inherit;" href='{% url "withdraw" %}'>Withdraw Money</a></button>
+        <button type="button" class="btn btn-outline-light"><a style="color: inherit;" href='{% url "money_transfer" %}'>Send Money</a></button>
+        </div>
+<br><br>
+        <div class="txn-history">
+            <h3 class="text-center">WALLET HISTORY</h3>
+            <p class="txn-list">Payment to xyz shop<span class="debit-amount">- &#8358;100</span></p>
+
+            <p class="txn-list">Payment to abc shop<span class="debit-amount">-&#8358;150</span></p>
+
+            <p class="txn-list">Credit From abc ltd<span class="credit-amount">+&#8358;300</span></p>
+
+            <p class="txn-list">Transfer From John Doe<span class="credit-amount">+&#8358;100</span></p>
+        </div>
+        <!-- <div class="footer-menu">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <i class="fa fa-home"></i>
+                    <p>Home</p>
+                </div>
+
+                <div class="col-md-3">
+                    <i class="fa fa-inbox"></i>
+                    <p>Inbox</p>
+                </div>
+
+                <div class="col-md-3">
+                    <i class="fa fa-university"></i>
+                    <p>Bank</p>
+                </div>
+
+                <div class="col-md-3">
+                    <i class="fa fa-barcode"></i>
+                    <p>Scan</p>
+                </div>
+            </div>
+        </div> -->
+</div>
+{% endblock %}

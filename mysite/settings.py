@@ -44,11 +44,13 @@ INSTALLED_APPS = [
     'loans',
     'investors',
     'adashi',
+    
     # 'api',
     # 3rd party
     'django_countries',
     'crispy_forms',
     'rest_framework',
+    'ravepay',
     # 'livereload',
 ]
 
@@ -183,3 +185,8 @@ MESSAGE_TAGS = {
 
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520# 20 MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 20971520 # 20 MB
+RAVEPAY_PUBLIC_KEY='FLWPUBK-aa6fad4e120abea0dcbc24bd7a515a20-X'
+RAVEPAY_SECRET_KEY='FLWSECK-41f222df0a09a00d3067882b62c23bc6-X'
+RAVEPAY_WEBHOOK_HASH="DJANGO_RAVEPAY"
+FLUTTERWAVE_PUBLIC_KEY="FLWPUBK-d33c2452bfe25b20c9a49c04f66c10ab-X"
+FLUTTERWAVE_SECRET_KEY="FLWSECK-915b08cfc315b56f5fdde08d9eab14d0-X"

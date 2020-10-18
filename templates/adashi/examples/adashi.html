@@ -11,48 +11,7 @@
 
     <div class="row">
       {% for category in categories %}
-      <div class="grey-bg container-fluid">
-        <section id="minimal-statistics">
-          <div class="row">
-              <div class="col-xl-4 col-sm-6 col-12"> 
-                <div class="card">
-                  <div class="card-content">
-                    <div class="card-body">
-                      <div class="media d-flex">
-                        <div class="align-self-center">
-                          <i class="icon-users primary font-large-2 float-left"></i>
-                          <br><br><br>
-                          <br>
-                          <strong>{{category.name}}</strong>
-                          <br>
-                          <br>
-                          <a href='{% url "detail" category.id %}'>View Members</a>
-                              <br>
-                              <br>
-                              <br>
-                              <button  class="btn-primary" type="button" onClick="makePayment()">Pay Contribution of {{category.contrib_amount}}</button>
-                         
-                        </div>
-                        <div class="media-body text-right">
-                          <strong>{{category.num_of_members}}</strong>
-                          <br>
-                          <span>Group Members</span>
-                        </div>
-                        <div class="media-body text-right">
-                          <strong>{{category.num_of_days_per_turn}} days </strong>
-                          <br>
-                          <span>Round Up Interval</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          
-      </section>
-      </div>
-      
-      <!-- <div id="paymentForm"  class="col-md-4">
+      <div id="paymentForm"  class="col-md-4">
         <div class="card card-chart">
           <div class="card-header " style="background:#264d73;">
             <div class="ct-chart"></div>
@@ -78,10 +37,10 @@
               <span class="text-primary"><i class="fa fa-clock"></i>Ends </span>: <strong>{{category.end_date}}</strong>
             </p>
           </div>
-          <button type="button" onClick="makePayment()">Pay Contribution</button>
+          <!-- <button type="button" onClick="makePayment()">Pay Contribution</button> -->
           <a href='{% url "detail" category.id %}' class="btn btn-primary btn-sm">VIEW MEMBERS</a>
-        </div> -->
-        <form style="opacity: 0;" id="paymentForm">
+        </div>
+        <form id="paymentForm">
        
           <div class="form-group" >
             <label for="email">Email Address</label>
@@ -152,6 +111,34 @@
 <link rel="stylesheet" type="text/css" href="https://pixinvent.com/stack-responsive-bootstrap-4-admin-template/app-assets/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
 
-
+<div class="grey-bg container-fluid">
+  <section id="minimal-statistics">
+    <div class="row">
+        <div class="col-xl-4 col-sm-6 col-12"> 
+          <div class="card">
+            <div class="card-content">
+              <div class="card-body">
+                <div class="media d-flex">
+                  <div class="align-self-center">
+                    <i class="icon-users primary font-large-2 float-left"></i>
+                    <br><br><br>
+                    <br>
+                    <h4>N 1000</h4>
+                    <br>
+                    <br>
+                    <a href="">Join</a>
+                  </div>
+                  <div class="media-body text-right">
+                    <h3>30</h3>
+                    <span>Group Members</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+</section>
+</div>
  
   {% endblock %}

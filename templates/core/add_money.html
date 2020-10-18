@@ -1,0 +1,81 @@
+{% extends "adashi/admin/layouts/base2.html" %}
+
+{% block title %} Submit Individual Savings {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+{% block content %}
+<p class="lead">Use the form below to submit your personal savings to CORPAD.</p>
+<form action="" method="POST" id="paymentForm">
+	{% csrf_token %}
+	{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger alert-dismissable">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+    <br>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input class="form-control" type="email" id="email-address" value="{{request.user.email}}" required />
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input class="form-control" type="tel" id="amounts" required placeholder="Amount to pay in Naira"/>
+      </div>
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input class="form-control" type="text" id="first-name"  value="{{request.user.first_name}} {{request.user.last_name}}"/>
+      </div>
+      <div class="form-group">
+        <label for="last-name">Phone</label>
+        <input class="form-control" type="text" id="last-name" value="{{request.user.mobile}}" />
+      </div>
+  
+      <script src="https://checkout.flutterwave.com/v3.js"></script>
+      <button class="btn btn-primary mb-2" type="button" onClick="makePayment()">Pay</button>
+     <!-- <button type="submit" class="btn btn-primary mb-2">Save</button> -->
+</form>
+<script>
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key:'FLWPUBK_TEST-31d61a13026483fc38f15f0e90232374-X',
+        tx_ref: ''+Math.floor((Math.random() * 1000000000) + 1),
+        amount:document.getElementById("amounts").value,
+        currency: "NGN",
+        country: "NG",
+        payment_options: "card",
+        redirect_url: // specified redirect URL
+          "https://corpad.ng",
+        meta: {
+          consumer_id: 23,
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: document.getElementById("email-address").value,
+          phone_number: document.getElementById("last-name").value,
+          name: document.getElementById("first-name").value,
+        },
+        callback: function (data) {
+          console.log(data);
+        },
+        onclose: function() {
+          // close modal
+        },
+        customizations: {
+          title: "CORPAD ADASHI",
+          description: "Payment for Group Savings.",
+          logo: "https://iili.io/2Z41Ul.th.jpg",
+        },
+      });
+    }
+    </script>
+  {% endblock %}

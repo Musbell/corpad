@@ -25,10 +25,10 @@ def index(request):
         # if no details exist (new user), create new details
         curr_user = Status()
         curr_user.account_number = randomGen() # random account number for every new user
-        curr_user.balance = 100
+        curr_user.balance = 0
         curr_user.user_name = request.user
         curr_user.save()
-    return render(request, "core/accounts.html", {"curr_user": curr_user})
+    return render(request, "core/wallet.html", {"curr_user": curr_user})
 @login_required
 def money_transfer(request):
     if request.method == "POST":
@@ -60,36 +60,32 @@ def money_transfer(request):
         form = forms.MoneyTransferForm()
     return render(request, "core/money_transfer.html", {"form": form})
 
+def addMoney(request):
+    return render(request, 'core/add_money.html')
 @login_required
-def topup(request):
+def withdraw(request):
     if request.method == "POST":
-        form = forms.TopUpForm(request.POST)
+        form = forms.WithdrawForm(request.POST)
         if form.is_valid():
             form.save()
         
-            curr_user = models.MoneyTransfer.objects.get(enter_your_user_name=request.user)
-            dest_user_acc_num = curr_user.enter_the_destination_account_number
+            curr_user = models.Withdraw.objects.get(email=request.user)
 
             temp = curr_user # NOTE: Delete this instance once money transfer is done
-            
-            dest_user = models.Status.objects.get(account_number=dest_user_acc_num) # FIELD 1
-            transfer_amount = curr_user.enter_the_amount_to_be_transferred_in_USD # FIELD 2
+            transfer_amount = curr_user.amount# FIELD 2
             curr_user = models.Status.objects.get(user_name=request.user) # FIELD 3
-
             # Now transfer the money!
             curr_user.balance = curr_user.balance - transfer_amount
-            dest_user.balance = dest_user.balance + transfer_amount
-
+           
             # Save the changes before redirecting
             curr_user.save()
-            dest_user.save()
 
             temp.delete() # NOTE: Now deleting the instance for future money transactions
 
         return redirect("account_status")
     else:
-        form = forms.MoneyTransferForm()
-    return render(request, "core/money_transfer.html", {"form": form})
+        form = forms.WithdrawForm()
+    return render(request, "core/withdraw.html", {"form": form})
 @login_required
 def loan(request):
     return render(request, "profiles/loans.html")

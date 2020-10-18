@@ -21,3 +21,11 @@ class NotificationForm(forms.ModelForm):
     class Meta:
         model   =   models.Notification
         fields  =   '__all__'
+
+class WithdrawForm(forms.ModelForm):
+    class Meta:
+        model   =   models.Withdraw
+        fields  =   [
+            "email",
+            "amount", 
+        ]
