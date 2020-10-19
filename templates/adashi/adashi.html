@@ -14,36 +14,47 @@
       <div class="grey-bg container-fluid">
         <section id="minimal-statistics">
           <div class="row">
-              <div class="col-xl-4 col-sm-6 col-12"> 
+              <div class="col-xl-5 col-sm-6 col-12"> 
                 <div class="card">
                   <div class="card-content">
                     <div class="card-body">
                       <div class="media d-flex">
                         <div class="align-self-center">
-                          <i class="icon-users primary font-large-2 float-left"></i>
+                          <i class="icon-users primary font-large-2 float-left"><small>{{category.name}}</small></i>
                           <br><br><br>
                           <br>
-                          <strong>{{category.name}}</strong>
+                         
                           <br>
                           <br>
                           <a href='{% url "detail" category.id %}'>View Members</a>
                               <br>
                               <br>
                               <br>
-                              <button  class="btn-primary" type="button" onClick="makePayment()">Pay Contribution of {{category.contrib_amount}}</button>
+                              <button  class="btn-primary" type="button" onClick="makePayment()">Pay Contribution of &#8358; {{category.contrib_amount}}</button>
                          
                         </div>
+                        <br>
+                        <br>
+                        <br>
                         <div class="media-body text-right">
-                          <strong>{{category.num_of_members}}</strong>
                           <br>
-                          <span>Group Members</span>
+                          <br>
+                          <br>
+                          <span>Members: <strong>{{category.num_of_members}} members</strong></span>
+                          <br>
+                          <br>
+                          <br>
+                          <span>Round--Up: <strong>{{category.num_of_days_per_turn}} days</strong></span>
+                          <br><br>
+                          <span>Final Day: <strong>{{category.end_date}}</strong></span>
                         </div>
+                        <!-- <br>
                         <div class="media-body text-right">
                           <strong>{{category.num_of_days_per_turn}} days </strong>
                           <br>
                           <span>Round Up Interval</span>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </div>
