@@ -27,6 +27,7 @@ class AdashiGroup(models.Model):
 class Join(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
 	category=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
+	spinned= models.BooleanField(default=False)
 	approved=models.BooleanField(default=False)
 
 	def __str__(self):

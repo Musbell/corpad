@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'investors',
     'adashi',
     
-    # 'api',
+    'api',
     # 3rd party
     'django_countries',
     'crispy_forms',

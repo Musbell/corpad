@@ -10,9 +10,9 @@ class JoinList(generics.ListCreateAPIView):
     serializer_class = JoinSerializer
 
 
-class CategoryList(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+# class CategoryList(generics.ListCreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializer
 
 
 class JoinDetail(generics.RetrieveUpdateDestroyAPIView):
