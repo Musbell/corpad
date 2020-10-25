@@ -50,3 +50,8 @@ class LoanUpdateForm(forms.ModelForm):
     class Meta:
         model   =   Loan
         fields  =   ['approved',]
+    
+class ShopLoanUpdateForm(forms.ModelForm):
+    class Meta:
+        model   =   OrderItem
+        fields  =   ['approved',]

@@ -10,6 +10,8 @@ urlpatterns = [
     path('new/notification', views.CreateNotification.as_view(), name="create-notification"),
     path('announcements', views.announcements, name="announcements"),
     path('notifications', views.notifications, name="notifications"),
-     path('add/money', views.addMoney, name="add-money"),
-     path('withdraw/money', views.withdraw, name="withdraw"),
+    path('add/money', views.addMoney, name="add-money"),
+    path('withdraw/money', views.withdraw, name="withdraw"),
+    path('wallet-details', views.Wallet.as_view(), name="wallets"),
+     path('edit/wallet/<int:pk>/details', views.WalletDetail.as_view(), name="wallet-detail"),
 ]

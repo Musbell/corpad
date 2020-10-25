@@ -29,3 +29,8 @@ class WithdrawForm(forms.ModelForm):
             "email",
             "amount", 
         ]
+    
+class StatusForm(forms.ModelForm):
+    class Meta:
+        model   =   models.Status
+        fields  =   '__all__'

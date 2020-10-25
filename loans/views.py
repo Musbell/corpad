@@ -10,7 +10,21 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+def ShopLoanList(request):
+	x=OrderItem.objects.all().filter(approved=True)
+	y=OrderItem.objects.all().filter(approved=False)
+	context={
+	'x':x,
+	'y':y
+	}
+	return render(request, 'loans/shop_loan_list.html', context)
 
+class ShopLoanUpdate(LoginRequiredMixin,UpdateView):
+	model = OrderItem
+	form_class = ShopLoanUpdateForm
+	template_name='loans/shop_update_loan.html'
+	success_url = reverse_lazy("shop-loan-list")
+	
 def LoanList(request):
 	x=Loan.objects.all().filter(approved=True)
 	y=Loan.objects.all().filter(approved=False)

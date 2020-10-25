@@ -1,0 +1,144 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<h1>View Shop Loan Applications</h1>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card ">
+      <div class="card-header">
+        <h4 class="card-title">Approved Applications</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Customer
+                </th>
+                <th>
+                  Commodity
+                </th>
+               
+                <th>
+                  Installment
+                </th>
+                <th>
+                  Months
+                </th>
+                <th>
+                  Address
+                </th>
+                <th>
+                  Phone
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in x %}
+              <tr>
+                <td>
+                    {{i.order.customer}}
+                   </td>
+                   <td>
+                    {{i.product}}
+                   </td>
+                   
+                   <td>
+                    {{i.product.installment_price}}
+                   </td>
+                   <td>
+                    {{i.product.period}}
+                   </td>
+                   <td>
+                    {{i.order.customer.work_address}}
+                   </td>
+                   <td>
+                    {{i.order.customer.mobile}}
+                   </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <div class="card  card-plain">
+      <div class="card-header">
+        <h4 class="card-title">Unapproved Shop Loan Applications</h4>
+        <p class="category">Admin Actions Needed.</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table tablesorter " id="">
+            <thead class=" text-primary">
+              <tr>
+                <th>
+                  Customer
+                </th>
+                <th>
+                  Commodity
+                </th>
+               
+                <th>
+                  Installment
+                </th>
+                <th>
+                  Months
+                </th>
+                <th>
+                  Address
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  Approve
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in y %}
+              <tr>
+                <td>
+                 {{i.order.customer}}
+                </td>
+                <td>
+                 {{i.product}}
+                </td>
+                
+                <td>
+                 {{i.product.installment_price}}
+                </td>
+                <td>
+                 {{i.product.period}}
+                </td>
+                <td>
+                 {{i.order.customer.work_address}}
+                </td>
+                <td>
+                 {{i.order.customer.mobile}}
+                </td>
+                <td>
+                <a href='{% url "shop-loan-update" i.id %}'>Approve</a>
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}

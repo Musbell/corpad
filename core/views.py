@@ -10,6 +10,15 @@ from django.views.generic import *
 from django.urls import *
 from django.contrib.auth.decorators import login_required
 
+class Wallet(ListView):
+    model=Status
+    template_name='core/wallets.html'
+class WalletDetail(UpdateView):
+    model = Status
+    form_class=forms.StatusForm
+    template_name = 'core/wallet_detail.html'
+    success_url = reverse_lazy('adashi-admin')
+
 class HomePageView(TemplateView):
     template_name ='core/index.html'
 

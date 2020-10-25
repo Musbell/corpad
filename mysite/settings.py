@@ -17,7 +17,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -27,7 +26,6 @@ SECRET_KEY = '(g1p_o+yy(h75an8_3nr@2!a+#n-&@#y6wmwa3j86iv6+9@ha%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -109,7 +107,6 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -128,7 +125,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -141,7 +137,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -165,7 +160,6 @@ LOGOUT_REDIRECT_URL = 'home'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-info',
     messages.INFO: 'alert-info',
@@ -173,16 +167,12 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
-
-
 # mailgun configs
-
 # EMAIL_HOST = 'smtp.mailgun.org'
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = 'postmaster@mg.bottlenose.co'
 # EMAIL_HOST_PASSWORD = 'mys3cr3tp4ssw0rd'
 # EMAIL_USE_TLS = True
-
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20971520# 20 MB
 FILE_UPLOAD_MAX_MEMORY_SIZE = 20971520 # 20 MB
 RAVEPAY_PUBLIC_KEY='FLWPUBK-aa6fad4e120abea0dcbc24bd7a515a20-X'
