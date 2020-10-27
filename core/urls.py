@@ -13,5 +13,7 @@ urlpatterns = [
     path('add/money', views.addMoney, name="add-money"),
     path('withdraw/money', views.withdraw, name="withdraw"),
     path('wallet-details', views.Wallet.as_view(), name="wallets"),
-     path('edit/wallet/<int:pk>/details', views.WalletDetail.as_view(), name="wallet-detail"),
+    path('edit/wallet/<int:pk>/details', views.WalletDetail.as_view(), name="wallet-detail"),
+    path('wallet/history', views.transactions, name="wallet-history"),
+    path('wallet/transactions', views.TransactionHistory.as_view(), name="transaction-history"),
 ]

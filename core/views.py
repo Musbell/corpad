@@ -12,11 +12,25 @@ from django.contrib.auth.decorators import login_required
 class Wallet(ListView):
     model=Status
     template_name='core/wallets.html'
+
 class WalletDetail(UpdateView):
     model = Status
     form_class=forms.StatusForm
     template_name = 'core/wallet_detail.html'
     success_url = reverse_lazy('adashi-admin')
+
+class TransactionHistory(ListView):
+    model=WalletHistory
+    template_name='core/transaction_history.html'
+
+def transactions(request):
+    ins=WalletHistory.objects.all().filter(sender=request.user)
+    outs=WalletHistory.objects.all().filter(receiver=request.user)
+    context={
+        'ins':ins,
+        'outs':outs,
+    }
+    return render(request, 'core/wallet_history.html', context)
 
 class HomePageView(TemplateView):
     template_name ='core/index.html'
@@ -36,7 +50,9 @@ def index(request):
         curr_user.balance = 0
         curr_user.user_name = request.user
         curr_user.save()
-    return render(request, "core/wallet.html", {"curr_user": curr_user})
+    ins=WalletHistory.objects.all().filter(receiver=request.user)
+    outs=WalletHistory.objects.all().filter(sender=request.user)
+    return render(request, "core/wallet.html", {"curr_user": curr_user, 'ins':ins, 'outs':outs})
 @login_required
 def money_transfer(request):
     if request.method == "POST":
@@ -60,6 +76,9 @@ def money_transfer(request):
             # Save the changes before redirecting
             curr_user.save()
             dest_user.save()
+
+            # todo save history in another model
+            history=WalletHistory.objects.create(sender=curr_user, receiver=dest_user, amount=transfer_amount)
 
             temp.delete() # NOTE: Now deleting the instance for future money transactions
 

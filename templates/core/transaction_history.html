@@ -1,0 +1,32 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">WALLET TRANSACTIONS</h4>
+        </div>
+        <br><br>
+        {% for x in object_list %}
+          <div class="alert alert-info alert-with-icon" data-notify="container">
+            <span data-notify="icon" class="tim-icons icon-wallet-43"></span>
+            <strong>TRANSACTION ID {{x.id}}</strong>
+            <h6>from: {{x.sender}}</h6>
+            <h6>to: {{x.receiver}}</h6>
+            <h6>amount: &#8358 {{x.amount}}</h6>
+            <h6>time: {{x.date}}</h6>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+</div>
+    
+  </div>
+{% endblock content %}

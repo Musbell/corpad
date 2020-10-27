@@ -7,6 +7,9 @@ class Status (models.Model):
     balance = models.IntegerField()
     user_name = models.CharField(max_length = 150, default = None)
 
+    def __str__(self):
+        return self.user_name
+
 class MoneyTransfer(models.Model):
     enter_your_user_name = models.CharField(max_length = 150, default = None)
     enter_the_destination_account_number = models.IntegerField()
@@ -15,6 +18,15 @@ class MoneyTransfer(models.Model):
 
     def __str__(self):
     	return f'{self.enter_your_user_name} sent {self.enter_the_destination_account_number} a total of $ {self.enter_the_amount_to_be_transferred_in_USD} on {self.created_on}'
+
+class WalletHistory(models.Model):
+    sender=models.CharField(max_length=200)
+    receiver=models.CharField(max_length=200)
+    amount=models.IntegerField()
+    date= models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f' Transaction Ticket Number ' +  str(self.pk)
 
 class Withdraw(models.Model):
     email = models.CharField(max_length = 150, default = None)
