@@ -27,7 +27,7 @@ def register(request):
 @login_required
 def profile(request):
     
-    return render(request, 'registration/profile.html')
+    return render(request, 'registration/prof2.html')
 
 @login_required
 def profileUpdate(request):

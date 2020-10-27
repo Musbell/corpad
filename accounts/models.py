@@ -44,7 +44,7 @@ class User(AbstractBaseUser):
     first_name    =   models.CharField(max_length=30, blank=True)
     last_name    =   models.CharField(max_length=30, blank=True)
     gender      =   models.CharField(max_length=10, choices=GENDER_CHOICE)
-    # bio         =   models.TextField(max_length=2000, blank=True, null=True)
+    bio         =   models.TextField(max_length=2000, blank=True, null=True)
     profile_pic =   models.ImageField(default='default/blank.png',
                         upload_to="users/%Y/%m/%d", blank=True, null=True)
     mobile      =   models.CharField(max_length=20, blank=True, null=True)
@@ -58,7 +58,7 @@ class User(AbstractBaseUser):
     profession=models.CharField(max_length=300, blank=True,null=True)
     work_address=models.CharField(max_length=300, blank=True,null=True)
     city=models.CharField(max_length=300, blank=True,null=True)
-    # postal_code=models.CharField(max_length=300, blank=True,null=True)
+    postal_code=models.CharField(max_length=300, blank=True,null=True)
     is_shadow_banned = models.BooleanField(default=False)
     verified = models.BooleanField(default=False)
     is_investor=models.BooleanField(default=False)
