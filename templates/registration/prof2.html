@@ -28,6 +28,11 @@
             </p>
           </div>
         </p>
+        {% if user.is_staff %}
+              <div class="col-4 text-center">
+                <a href='/admin/' class="btn btn-sm btn-primary">Admin Site</a>
+              </div>
+              {% endif%}
         <div class="card-description">
           <h6 class="text-center text-primary">BIO</h6>
          {{request.user.bio}}
