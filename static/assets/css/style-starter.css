@@ -9592,8 +9592,8 @@ p.white {
     box-shadow: 0 25px 98px 0 rgba(0, 0, 0, 0.1); } }
 
 .banner {
-  background-color: #0c0e27;
-  background-color: #526489;
+  background-color: #FE9C0F;
+  background-color: #FE9C0F;
   color: white; }
 
 /*===================================*
@@ -9803,7 +9803,7 @@ header.active {
 
 header.nav-fixed {
   padding: 10px 15px;
-  background-color: #124f8f; }
+  background-color: #FE9C0F; }
 
 header.nav-fixed .navbar-brand img {
   max-width: 102px; }
@@ -10031,7 +10031,7 @@ max-width: 991px
   #site-header {
     padding-left: 25px;
     padding-right: 25px;
-    background: #0c3866; }
+    background: #FE9C0F; }
   .navbar-toggler {
     padding: 0.25rem 0rem; }
   header.fixed-top {
@@ -10143,7 +10143,7 @@ button.owl-prev {
 
 button.owl-next span,
 button.owl-prev span {
-  background: #124f8f;
+  background: #124F8F;
   color: #fff;
   width: 40px;
   display: block;
