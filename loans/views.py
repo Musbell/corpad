@@ -9,7 +9,11 @@ from .utils import cookieCart, cartData, guestOrder
 from django.contrib.auth.decorators import login_required
 from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from accounts.decorators import *
 
+@method_decorator([login_required, admin_required], name='dispatch')
 def ShopLoanList(request):
 	x=OrderItem.objects.all().filter(approved=True)
 	y=OrderItem.objects.all().filter(approved=False)
@@ -19,12 +23,14 @@ def ShopLoanList(request):
 	}
 	return render(request, 'loans/shop_loan_list.html', context)
 
+@method_decorator([login_required, admin_required], name='dispatch')
 class ShopLoanUpdate(LoginRequiredMixin,UpdateView):
 	model = OrderItem
 	form_class = ShopLoanUpdateForm
 	template_name='loans/shop_update_loan.html'
 	success_url = reverse_lazy("shop-loan-list")
-	
+
+@method_decorator([login_required, admin_required], name='dispatch')	
 def LoanList(request):
 	x=Loan.objects.all().filter(approved=True)
 	y=Loan.objects.all().filter(approved=False)
@@ -33,13 +39,15 @@ def LoanList(request):
 	'y':y
 	}
 	return render(request, 'loans/loan_list.html', context)
-	
+
+@method_decorator([login_required, admin_required], name='dispatch')
 class LoanUpdate(LoginRequiredMixin,UpdateView):
 	model = Loan
 	form_class = LoanUpdateForm
 	template_name='loans/update_loan.html'
 	success_url = reverse_lazy("loan-list")
 
+@method_decorator([login_required, admin_required], name='dispatch')
 class LoanCreate(LoginRequiredMixin,CreateView):
 	model = Loan
 	form_class = LoanForm
@@ -144,7 +152,7 @@ def processOrder(request):
 def thanks(request):
 	return render(request, 'loans/thanks.html')
 
-
+@method_decorator([login_required, admin_required], name='dispatch')
 class CreateProduct(CreateView):
 	model=Product
 	form_class=CreateProductForm

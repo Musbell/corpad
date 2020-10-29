@@ -11,12 +11,11 @@ from core.models import *
 from investors.models import *
 from loans.models import *
 from django.conf import settings
-# Create your views here.
-# class GroupList(ListView):
-# 	model=Category
-# 	template_name='adashi/list.html'
+from accounts.decorators import *
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
-
+@admin_required
 def adashi_admin(request):
     users = User.objects.all()
     groups = AdashiGroup.objects.all()
@@ -30,7 +29,7 @@ def adashi_admin(request):
     }
     return render(request, 'adashi/admin/index.html', context)
 
-
+@login_required
 def GroupList(request):
     categories = AdashiGroup.objects.all()
     return render(request, 'adashi/adashi.html', {'categories': categories})
@@ -40,8 +39,7 @@ def GroupList(request):
         context['key'] = settings.FLUTTERWAVE_PUBLIC_KEY
         return context
 
-
-class GroupDetail(DetailView):
+class GroupDetail(LoginRequiredMixin,DetailView):
     model = AdashiGroup
     template_name = 'adashi/detail.html'
 
@@ -50,12 +48,11 @@ class GroupDetail(DetailView):
         context['key'] = settings.FLUTTERWAVE_PUBLIC_KEY
         return context
 
-
+@method_decorator([login_required, admin_required], name='dispatch')
 class GroupUpdate(UpdateView):
     model = AdashiGroup
     form_class = JoinForm
     template_name = 'adashi/update.html'
-
 
 def join(request):
     return render(request, 'adashi/spin.html')
@@ -76,18 +73,14 @@ class PayView(LoginRequiredMixin, CreateView):
     form_class = PaymentForm
     success_url = reverse_lazy('thanks')
 
-    # def form_valid(self, form):
-    # 	form.instance.user = self.request.user
-    # 	return super().form_valid(form)
-
-
+@method_decorator([login_required, admin_required], name='dispatch')
 class CreateGroup(CreateView):
     model = AdashiGroup
     form_class = CreateGroupForm
     template_name = 'core/create_group.html'
     success_url = reverse_lazy('adashi-admin')
 
-
+@admin_required
 def JoinList(request):
     x = Join.objects.all().filter(approved=True)
     y = Join.objects.all().filter(approved=False)
@@ -98,8 +91,8 @@ def JoinList(request):
     }
     return render(request, 'adashi/join_list.html', context)
 
-
-class JoinUpdate(LoginRequiredMixin, UpdateView):
+@method_decorator([login_required, admin_required], name='dispatch')
+class JoinUpdate(UpdateView):
     model = Join
     form_class = JoinUpdateForm
     template_name = 'adashi/update_join.html'

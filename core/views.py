@@ -8,21 +8,27 @@ import random
 from django.views.generic import *
 from django.urls import *
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from accounts.decorators import *
 
+@method_decorator([login_required, admin_required], name='dispatch')
 class Wallet(ListView):
     model=Status
     template_name='core/wallets.html'
 
+@method_decorator([login_required, admin_required], name='dispatch')
 class WalletDetail(UpdateView):
     model = Status
     form_class=forms.StatusForm
     template_name = 'core/wallet_detail.html'
     success_url = reverse_lazy('adashi-admin')
 
+@method_decorator([login_required, admin_required], name='dispatch')
 class TransactionHistory(ListView):
     model=WalletHistory
     template_name='core/transaction_history.html'
 
+@login_required
 def transactions(request):
     ins=WalletHistory.objects.all().filter(sender=request.user)
     outs=WalletHistory.objects.all().filter(receiver=request.user)
@@ -87,8 +93,10 @@ def money_transfer(request):
         form = forms.MoneyTransferForm()
     return render(request, "core/money_transfer.html", {"form": form})
 
+@login_required
 def addMoney(request):
     return render(request, 'core/add_money.html')
+
 @login_required
 def withdraw(request):
     if request.method == "POST":
@@ -113,25 +121,26 @@ def withdraw(request):
     else:
         form = forms.WithdrawForm()
     return render(request, "core/withdraw.html", {"form": form})
+
 @login_required
 def loan(request):
     return render(request, "profiles/loans.html")
-
-
-
+    
+@method_decorator([login_required, admin_required], name='dispatch')
 class CreateAnnouncement(CreateView):
     model = Announcement
     form_class = forms.AnnouncementForm
     template_name='registration/new_announcement.html'
     success_url = reverse_lazy('adashi-admin')
 
-
+@method_decorator([login_required, admin_required], name='dispatch')
 class CreateNotification(CreateView):
     model = Notification
     form_class = forms.NotificationForm
     template_name='registration/new_notification.html'
     success_url = reverse_lazy('adashi-admin')
 
+@login_required
 def announcements(request):
     x=Announcement.objects.all().filter(priority='High')
     y=Announcement.objects.all().filter(priority='Medium')
@@ -145,7 +154,7 @@ def announcements(request):
     }
     return render(request, 'registration/announcements.html', context)
 
-
+@login_required
 def notifications(request):
     Notifications=Notification.objects.all().filter(target=request.user)
     context={

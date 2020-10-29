@@ -22,5 +22,6 @@ urlpatterns = [
     path('user/dashboard', user_dashboard, name="user-dashboard"),
     path('all/users', list_users, name="users_list"),
     path('all/investors', list_investors, name="investors_list"),
+    path('page/access/blocked', restricted, name="restricted"),
    
 ]

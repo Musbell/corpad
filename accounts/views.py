@@ -10,6 +10,7 @@ from .decorators import *
 from django.views.generic import (ListView, DetailView, CreateView , UpdateView, DeleteView, TemplateView) 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 def register(request):
@@ -109,10 +110,14 @@ def user_dashboard(request):
     }
     return render(request, 'registration/index.html',context)
 
+@admin_required
 def list_users(request):
     users= User.objects.all()
     return render(request, 'registration/user_list.html', {'users':users})
-
+@admin_required
 def list_investors(request):
     users= User.objects.all().filter(is_investor=True)
     return render(request, 'registration/investor_list.html', {'users':users})
+
+def restricted(request):
+    return render(request, 'registration/restricted.html')

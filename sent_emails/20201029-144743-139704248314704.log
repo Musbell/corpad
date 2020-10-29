@@ -1,0 +1,26 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Password reset on localhost:8000
+From: webmaster@localhost
+To: benta@gmail.com
+Date: Thu, 29 Oct 2020 14:47:43 -0000
+Message-ID: 
+ <160398286357.6472.16128655646894704999@realnickyadams-Swift-SF314-52>
+
+
+You're receiving this email because you requested a password reset for your user account at localhost:8000.
+
+Please go to the following page and choose a new password:
+
+http://localhost:8000/accounts/reset/Mg/aciefj-e8f7e2bbab323dcf7fab2ee1069dd2c8/
+
+Your username, in case you’ve forgotten: benta@gmail.com
+
+Thanks for using our site!
+
+The localhost:8000 team
+
+
+
+-------------------------------------------------------------------------------
