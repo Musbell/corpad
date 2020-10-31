@@ -15,6 +15,32 @@ from accounts.decorators import *
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
+
+from rest_framework.views import APIView
+from  rest_framework.response import Response
+from django.views.generic import View
+# Create your views here.
+class HomeView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'adashi/admin/admin_view.html',)
+
+class ChartData(APIView):
+    users=User.objects.all().count()
+    admins=User.objects.all().filter(is_staff=True).count()
+    groups=AdashiGroup.objects.all().count()
+    investors=User.objects.all().filter(is_investor=True).count()
+    loans=Loan.objects.all().count()
+    shops=OrderItem.objects.all().count()
+
+    def get(self, request, format=None):
+        labels = ["Users",'Staff',"Adashi-Groups", "Investors", "Loans", 'Shop Loans']
+        default_items = [self.users, self.admins, self.groups, self.investors,self.loans,self.shops]
+        data = {
+                "labels": labels,
+                "default": default_items,
+        }
+        return Response(data)
+
 @admin_required
 def adashi_admin(request):
     users = User.objects.all()

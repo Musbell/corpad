@@ -1,0 +1,278 @@
+{% extends "adashi/admin/layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+    {% load accounts_tags %}
+    
+    <div class='row'>
+        <div class='col-sm-12' url-endpoint='{% url "chart-data" %}'>
+            <h4 class="text-primary text-center">CORPAD MODELS VISUALIZATION</h4>
+            <p class="lead text-warning text-center">Visi main site by clicking <a href="www.corpad.ng">here</a></p>
+            <br>
+            <br>
+            <br>
+           
+            <div class='card-body'>
+                <h3 class="text-primary text-center">POLAR AREA GRAPH</h3>
+                <div class="chart-area">
+                    <canvas id="myChart"></canvas>
+                </div>
+               
+            </div>
+            
+            <div class='card-body'>
+                <h3 class="text-primary text-center">BAR GRAPH</h3>
+                <div class="chart-area">
+                    <canvas id="myChart2"></canvas>
+                </div>
+               
+            </div>
+
+            <div class='card-body'>
+                <h3 class="text-primary text-center">LINE CHART</h3>
+                <div class="chart-area">
+                    <canvas id="myChart3"></canvas>
+                </div>
+               
+            </div>
+
+            <div class='card-body'>
+                <h3 class="text-primary text-center">RADAR CHART</h3>
+                <div class="chart-area">
+                    <canvas id="myChart4"></canvas>
+                </div>
+               
+            </div>
+    
+    
+        </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Total Adashi Groups</h5>
+            <h3 class="card-title"><i class="tim-icons icon-bell-55 text-primary"></i>{% total_groups %} Adashi Groups</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Total Investors</h5>
+            <h3 class="card-title"><i class="tim-icons icon-delivery-fast text-info"></i>{% total_investors %} Investors</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="CountryChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card card-chart">
+          <div class="card-header">
+            <h5 class="card-category">Total Loans</h5>
+            <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{% total_loans %} Loans</h3>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="chartLineGreen"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    </div>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+  <script>
+    $(document).ready(function() {
+        var endpoint = '/adashi/api'
+var defaultData = []
+var labels = [];
+$.ajax({
+    method: "GET",
+    url: endpoint,
+    success: function(data){
+        labels = data.labels
+        defaultData = data.default
+        setChart()
+    },
+    error: function(error_data){
+        console.log("error")
+        console.log(error_data)
+    }
+})
+
+function setChart(){
+    var ctx = document.getElementById("myChart");
+    var ctx2 = document.getElementById("myChart2");
+    var ctx3 = document.getElementById("myChart3");
+    var ctx4 = document.getElementById("myChart4");
+    var myChart = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# count number',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+    var myChart = new Chart(ctx, {
+    type: 'polarArea',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# count number',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# count number',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+
+var myChart4 = new Chart(ctx4, {
+    type: 'radar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '# count number',
+            data: defaultData,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+}
+    });
+  </script>
+
+{% endblock javascripts %}
