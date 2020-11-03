@@ -2,7 +2,7 @@ fh?a+V24;E]wPk@a
 
 
 ssh root@164.90.216.229
-ssh nick@164.90.216.229
+ ssh nick@164.90.216.229
 su nick
 cd ~/adashi/
 

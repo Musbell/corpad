@@ -26,8 +26,13 @@ class AdashiGroup(models.Model):
 class Position(models.Model):
 	position_number=models.IntegerField()
 	group=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
+<<<<<<< HEAD
 	user= models.ForeignKey(User,on_delete=models.CASCADE)
 	
+=======
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
+
+>>>>>>> b69de61d74fc91c81ac8f1e7670bb4c6468ca565
 class Join(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
 	category=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
