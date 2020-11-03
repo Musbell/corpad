@@ -1,7 +1,18 @@
 from rest_framework import serializers
 
-from adashi.models import Join
+from adashi.models import Join, Position
 
+class PositionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Position
+        fields = ['id', 'user', 'group', 'position_number']
+    
+
+    def create(self, validated_data):
+        """
+        Create and return a new `Join` instance, given the validated data.
+        """
+        return Position.objects.create(**validated_data)
 
 class JoinSerializer(serializers.ModelSerializer):
     class Meta:

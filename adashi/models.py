@@ -23,6 +23,10 @@ class AdashiGroup(models.Model):
 	def members_name(self):
 		return [x.email for x in self.members]
 
+class Position(models.Model):
+	position_number=models.IntegerField()
+	group=models.ForeignKey(AdashiGroup, on_delete=models.CASCADE)
+	user=models.ForeignKey(User,on_delete=models.CASCADE)
 
 class Join(models.Model):
 	user=models.ForeignKey(User, on_delete=models.CASCADE, related_name='joins')
