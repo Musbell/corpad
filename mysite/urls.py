@@ -28,7 +28,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('ravepay/', include(('ravepay.urls', 'ravepay'), namespace='ravepay')),
     path('api/', include('api.urls')),
-    url('', include('pwa.urls')),
+    path('', include('pwa.urls')),
  ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
