@@ -1,7 +1,7 @@
 
 	{% load static %}
   {% load accounts_tags %} 
-  
+  {% load pwa %}
 
 <!doctype html>
 <html lang="en">
@@ -15,7 +15,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Corpad Platform </title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400&display=swap" rel="stylesheet">
-
+     ...
+    {% progressive_web_app_meta %}
+    ...
   <!-- Template CSS -->
   <link rel="stylesheet" href="{% static 'assets/css/style-starter.css' %} ">
   <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>

@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'rest_framework',
     'ravepay',
+    'pwa',
     # 'livereload',
 ]
 
@@ -181,3 +182,35 @@ RAVEPAY_SECRET_KEY='FLWSECK-41f222df0a09a00d3067882b62c23bc6-X'
 RAVEPAY_WEBHOOK_HASH="DJANGO_RAVEPAY"
 FLUTTERWAVE_PUBLIC_KEY="FLWPUBK-d33c2452bfe25b20c9a49c04f66c10ab-X"
 FLUTTERWAVE_SECRET_KEY="FLWSECK-915b08cfc315b56f5fdde08d9eab14d0-X"
+
+# PWA
+PWA_APP_NAME = 'Corpad'
+PWA_APP_DESCRIPTION = "The best platform you have been waiting for."
+PWA_APP_THEME_COLOR = '#ED9B2C'
+PWA_APP_BACKGROUND_COLOR = '#ffffff'
+PWA_APP_DISPLAY = 'standalone'
+PWA_APP_SCOPE = '/'
+PWA_APP_ORIENTATION = 'any'
+PWA_APP_START_URL = '/'
+PWA_APP_STATUS_BAR_COLOR = 'default'
+PWA_APP_ICONS = [
+    {
+        'src': '/static/images/my_app_icon.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_ICONS_APPLE = [
+    {
+        'src': '/static/images/CORPAP3.png',
+        'sizes': '160x160'
+    }
+]
+PWA_APP_SPLASH_SCREEN = [
+    {
+        'src': '/static/images/icons/CORPAP3.png',
+        'media': '(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)'
+    }
+]
+PWA_APP_DIR = 'ltr'
+PWA_APP_LANG = 'en-US'
+
